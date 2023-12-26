@@ -1,0 +1,201 @@
+/* 设置元素背景图片 */
+#div1{
+    width: 200px;
+    height: 200px;
+    background-image: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png);
+}
+/* repeat 沿着xy轴平铺 可设x平铺、y平铺、不平铺*/
+#div2{
+    width: 200px;
+    height: 200px;
+    background-image: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png);
+    background-repeat: repeat-x;
+}
+#div3{
+    width: 200px;
+    height: 200px;
+    background-image: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png);
+    background-repeat: repeat-y;
+}
+
+#div4{
+    width: 200px;
+    height: 200px;
+    background-image: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png);
+    background-repeat: no-repeat;
+}
+
+/* position设背景位置 */
+#div5{
+    width: 200px;
+    height: 200px;
+    background-image: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#div6{
+    width: 200px;
+    height: 200px;
+    background-image: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png);
+    background-repeat: no-repeat;
+    background-position: 90% 20%;
+}
+
+/* background可设多个属性 空格拼接 可省略几项 */
+#div7{
+    width: 200px;
+    height: 200px;
+    background: #ffff00 url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png) no-repeat;
+}
+
+#div8{
+    width: 200px;
+    height: 200px;
+    background: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png) no-repeat 50% 50%;
+}
+
+/* 设置元素的字体 可设多个 浏览器不支持会尝试下一个 */
+#p1{
+    font-family: FangSong;
+    font-size: 20%;
+}
+
+#span1{
+    font-family: SimHei;
+    font-size: xx-large;
+}
+
+#span2{
+    font-family: LiSu,KaiTi;
+    font-size: 20%;
+}
+
+/* 字体尺寸 */
+#span3{
+    font-size: smaller;
+}
+
+/* 字体是否斜体 */
+#span4{
+    font-style: oblique;
+}
+
+#span5{
+    font-style: italic;
+}
+
+/*设置字体使用小写字体*/
+#span7{
+    font-variant: small-caps;
+}
+
+/*设置字体的粗细*/
+#span9{
+    font-weight: 200;
+}
+
+#span10{
+    font-weight: bold;
+}
+
+/*设置字体的多项样式 也可省略某几项*/
+#span11{
+    font: italic 40px bold SimHei;
+}
+
+/*设置文本的颜色*/
+#p3{
+    color: red;
+}
+
+/*设置文本的方向*/
+#p4{
+    direction: rtl;
+}
+
+/*设置字符间隔大小*/
+#p5{
+    letter-spacing: -5px;
+}
+
+#p6{
+    letter-spacing: 10px;
+}
+
+/*设置行高*/
+#p8{
+    line-height: 1.5;
+}
+
+#p9{
+    line-height: 200%;
+}
+
+#p10{
+    line-height: 5px;
+}
+
+/*设置元素中文本的水平对齐方式*/
+#p11{
+    text-align: left;
+}
+
+#p12{
+    text-align: right;
+}
+
+#p13{
+    text-align: center;
+}
+
+/*为文本添加装饰-划线*/
+#p14{
+    text-decoration: overline;
+}
+
+#p15{
+    text-decoration: line-through;
+}
+
+#p16{
+    text-decoration: underline;
+}
+
+/*设置文本块首行文本的缩进*/
+#p17{
+    text-indent: 50px;
+}
+
+#p18{
+    text-indent: 40%;
+}
+
+/*设置文本阴影*/
+#p19{
+    font-size: 30px;
+    color: gold;
+    text-shadow: 5px 5px 3px,10px 10px 5px #EEE8AA, 15px 15px 8px #FFFACD, 0-35px red;
+}
+
+/*设置文本大小写*/
+#p20{
+    text-transform: capitalize;
+}
+
+#p21{
+    text-transform: uppercase;
+}
+
+#p22{
+    text-transform: lowercase;
+}
+
+/*设置元素内部的空白*/
+#p23{
+    white-space: pre;
+}
+
+#p24{
+    white-space: nowrap;
+}

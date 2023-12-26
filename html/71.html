@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打字机效果</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(blue,skyblue);
+        }
+        .text{
+            font-size: 48px;
+            color: white;
+        }
+        .text .cursor{
+            color: black;
+        }
+        @keyframes flash{
+            from{
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        var str='《阿房宫赋》六王毕，四海一，蜀山兀，阿房出。';
+        function setText(t){
+            return new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    document.getElementsByClassName('word')[0].innerHTML = t;
+                    resolve();
+                },200);
+            }); 
+        }
+        async function main(flag){
+            if(flag){
+                for(var i=1;i<str.length;i++){
+                    await setText(str.substr(0,i));
+                }
+            }else{
+                for(var i=str.length;i>0;i--){
+                    await setText(str.substr(0,i));
+                }
+            }
+            setTimeout(() => {
+                main(!flag)
+            }, 1000);
+        }
+        main(1);
+    </script>
+</head>
+<body>
+    <div class="text">
+        <span class="word"></span><span class="cursor">|</span>
+    </div>
+</body>
+</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

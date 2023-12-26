@@ -1,0 +1,106 @@
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	body{
+		font-size: 18px;
+		text-decoration: none;
+		padding: 0px;
+		margin: 0px;
+	}
+	a{
+		text-decoration: none;
+		color: white;
+	}
+    .dul{
+		text-align: center;
+		padding: 12px 0px;
+        height: 30px;
+        background-color: black;
+    }
+	ul li{
+		list-style: none;
+	}
+	.ul1 li{
+		display: table-cell;
+	}
+	.ul1{
+		width: 100%;
+		display: table;
+	}
+	.ul1 li > a{
+		display: block;
+		text-align: center;
+	}
+	
+	.mid_top{
+		float: left;
+		margin: 1%;
+		width: 60%;
+		height: 30%;
+		background-color: #D3D3D3;
+		padding: 5%;
+	}
+	.mid_top_left{
+		width: 808.8px;
+	}
+	
+	.products{
+		float: left;
+		width: 60%;
+		height: 30%;
+	}
+	.products div{
+		width: 30%;
+		display: inline-block;
+		padding: 0 15px;
+	}
+	.products a{
+		color: #000000;
+	}
+	.listhead{
+		height: 50px;
+		background-color: red;
+	}
+	.listhead2{
+		height: 70px;
+		font: bold 30px;
+		background-color: red;
+	}
+	
+	.list1{
+		text-align: left;
+		top: 10%;
+		height: 40%;
+		position: absolute;
+		right: 3%;
+		width: 18%;
+		/* border: #000000 solid 1px; */
+		line-height: 50px;
+	}
+	.list2{
+		text-align: left;
+		height: 40%;
+		top:48%;
+		position: absolute;
+		right: 3%;
+		width: 18%;
+		border-bottom: -1px;
+		/* border: #000000 solid 1px; */
+		line-height: 100px;
+	}
+	
+	.bottom{
+		position: absolute;
+		top: 130%;
+		width: 100%;
+	}
+	.bot_left{
+		position: absolute;
+		left: 1%;
+	}
+	
+	.bot_right{
+		position: absolute;
+		right: 1%;
+	}

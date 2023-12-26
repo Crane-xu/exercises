@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js基础知识</title>
+		<script type="text/javascript">
+			function test() {
+				// var str="hello";
+				// alert(typeof str);
+				var a;
+				if (a instanceof Array) {
+					alert("a是数组类型");
+				} else {
+					alert("a不是数组类型");
+				}
+			}
+
+			var a = '123';
+			var b = a + 6;
+			document.write('没用Number转换前:' + b);
+			document.write('<br />');
+			var c = Number(a) + 6;
+			document.write('用Number转换后:' + c);
+			document.write('<hr />');
+			var x = 33;
+			var y = x + 36;
+			document.write('没用String转换前：' + y);
+			document.write('<br />');
+			var m = String(x) + 66;
+			document.write('用String转换后:' + m);
+			document.write('<hr />');
+			var t = 13;
+			var f = 0;
+			var b1 = Boolean(t);
+			var b2 = Boolean(f);
+			document.write('用Boolean转换后：t=' + b1 + ',f=' + b2);
+
+
+			var s = "hello";
+			var a = 3 + 2;
+			var b = 3 - 2;
+			var c = 3 * 2;
+			var d = 3 / 2;
+			var e = 3 % 2;
+
+			var a = 3;
+			var b = 2;
+			var c = a > b;
+			var d = a < b;
+			var e = a <= b;
+			var f = a <= b;
+			var g = a != b;
+			var aa = '3';
+			var bb = 3;
+			var cc = aa == bb;
+			var dd = aa === bb;
+
+
+			var a = 3,
+				b = 9,
+				c = 7,
+				d = 5;
+			var as = (a < b) && (c < d);
+			var bs = (a < b) || (c < d);
+			var cs = !(a > b);
+
+			var i = 3;
+			var a = i++;
+			document.write("a=" + a + ",i=" + i)
+		</script>
+	</head>
+	<body>
+		<input type="button" value="点击" onclick="test();" />
+	</body>
+</html>
+<script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

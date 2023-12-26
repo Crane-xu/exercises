@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+</head>
+<body>
+    This is a red square: <canvas id="square" width=10 height=10></canvas>
+    This is a blue circle: <canvas id="circle" width=10 height=10></canvas>
+    <hr/>
+
+    <canvas id="my_canvas_id" width=900 height=700></canvas>
+</body>
+<script>
+    var canvas = document.getElementById("my_canvas_id");
+    var c = canvas.getContext("2d");
+
+    c.beginPath();      //开始一条新路径
+    // 定义一条新的子路径。一旦使用moveTo()方法确定了子路径的起点，
+    // 接下来就可以调用lineTo()方法来将该点与新的一个点通过直线连接起来。
+    c.moveTo(20,100);  //从(100,100)开始定义一条新的子路径
+    c.lineTo(20,200);  //从(100,100)到(200,200)绘制一条线段
+    c.lineTo(100,200);  //从(200,200)到(100,100)绘制一条线段
+
+    c.fill();       //填充一个三角形区域
+    c.stroke();     //绘制三角形的两条边
+
+    /*******************************************
+    定义一个以(x,y)为中心，半径为r的规则n多边形
+    每个顶点都是均匀分布在圆周上
+    将第一个顶点防止在最上面，或者指定一定角度
+    除非最后一个参数是true,否则逆时针旋转
+    */
+   function polygon(c,n,x,y,r,angle,counterclockwise){
+        angle = angle || 0;
+        counterclockwise = counterclockwise || false;
+        c.moveTo(x+r*Math.sin(angle),   //从第一个顶点开始一条新的子路径
+                 y-r*Math.cos(angle));  //使用三角法计算位置
+        //两顶点之间的夹角
+        var delta = 2*Math.PI/n;
+        //循环剩余每个顶点
+        for(var i=0;i<n;i++){
+            //调整角度
+            angle+=counterclockwise?-delta:delta;
+            //以下顶点为断电添加线段
+            c.lineTo(x+r*Math.sin(angle),
+                     y-r*Math.cos(angle));
+        }
+        //将最后一个顶点和起点连起来
+        c.closePath();
+   }
+   
+    //开始一个新的路径并提娜佳一条多边形子路径
+    c.beginPath();
+    polygon(c,3,50,70,50);                  //三角形
+    polygon(c,4,150,60,50,Math.PI/4);       //正方形
+    polygon(c,5,255,55,50);                 //五边形
+    polygon(c,6,365,53,50,Math.PI/6);       //六边形
+    polygon(c,4,365,53,20,Math.PI/4,true);  //六边形中的小正方形
+
+    //设置属性来控制图形的外观
+    c.fillStyle = "#ccc";   //内部使用浅灰色
+    c.strokeStyle = "#008"; //深蓝色外边框
+    c.lineWidth = 5;        //5个像素宽
+    //调用如下函数绘制所有这些多边形(每个分别定义在自己的子路径中)
+    c.fill();   //填充图形
+    c.stroke(); //勾勒外边框
+
+    /******************************************************/ 
+    c.font = "bold 65pt sans-serif";
+    c.lineWidth = 2;
+    c.strokeStyle = "#000";
+
+    c.strokeRect(175,180,50,325);
+    c.strokeText("<canvas>",15,510);
+
+    polygon(c,3,200,400,200);
+    polygon(c,3,200,400,100,0,true);
+    // 裁剪区域外不会绘制任何内容
+    c.clip();
+
+    c.lineWidth = 10;
+    c.stroke();
+
+    c.fillStyle = "#aaa";
+    c.fillRect(175,180,50,325);
+    c.fillStyle = "#888";
+    c.fillText("<canvas>",15,510);
+</script>
+
+<script>
+    //获取第一个画布元素
+    var canvas = document.getElementById("square");
+    //获取2d绘制上下文
+    var context = canvas.getContext("2d");
+    //设置填充色为红色
+    context.fillStyle = "#f00";
+    //填充一个正方形
+    context.fillRect(0,0,10,10);
+
+    //获取第二个画布元素
+    canvas = document.getElementById("circle");
+    //获取2d绘制上下文
+    context = canvas.getContext("2d");
+    //开始一条新的路径
+    context.beginPath();
+    //将圆形添加到该路径中
+    context.arc(5,5,5,0,2*Math.PI,true);
+    //设置填充色为红色
+    context.fillStyle = "#00f";
+    //填充路径
+    context.fill();
+</script>
+</html>

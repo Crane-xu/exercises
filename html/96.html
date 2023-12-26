@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>copy</title>
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/bootstrap.min.j  s"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <style>
+        .alert {
+            margin-top: 20px;
+        }
+
+        .mgb {
+            margin-bottom: 5px;
+        }
+
+        .btn-wd {
+            width: 70px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="alert alert-success fade show">
+            <strong>成功！</strong> 已复制！
+        </div>
+    </div>
+</body>
+
+<script type="module">
+    // import { steps } from './js/copy.js';
+    //     const steps = [{
+    //         text: '1',
+    //         code: "netstat -ntlp | grep -E '9080|9443|8443|2379|6379|9000|8088|9100|60022'"
+    //     },
+    //     {
+    //         text: '2',
+    //         code: 'vi /etc/security/limits.conf '
+    //     }
+    // ];
+    const steps = [
+        /*
+fs.file-max=655360
+vm.max_map_count=655360
+net.ipv4.tcp_max_tw_buckets=8000
+net.core.somaxconn=60000
+net.ipv4.tcp_timestamps=1
+net.ipv4.tcp_tw_reuse=1
+net.ipv4.tcp_fin_timeout=5
+net.ipv4.tcp_max_syn_backlog=8192
+net.ipv4.ip_local_port_range=1024 65535
+net.core.rmem_default=102400         
+net.core.rmem_max=307200
+net.core.wmem_default=102400
+net.core.wmem_max=307200
+net.ipv4.tcp_rmem=4096    102400   307200
+net.ipv4.tcp_wmem=4096    102400   307200
+
+* soft nofile 655360
+* hard nofile 655360
+* soft nproc 65536
+* hard nproc 65536
+        */
+        // ----系统配置
+        // "systemctl stop firewalld.service",
+        // 'systemctl disable firewalld.service',
+        // "sed -i  's/SELINUX=enforcing/SELINUX=disabled/g'  /etc/selinux/config",
+        // 'vim  /etc/sysctl.conf',
+        // 'sysctl -p',
+        // 'vim /etc/security/limits.conf',
+        // 'ifconfig eno1 mtu 9000 up',
+        // "ethtool -G eno1 rx 4096",
+        // "ethtool -G eno1 tx 4096",
+        // "reboot",
+        // ----redis
+        "ps -ef  |  grep  redis",
+        "rm -rf  /etc/redis",
+        "rm -rf  /var/redis",
+        "rm -rf  /usr/local/bin/redis*",
+        "rm -rf  /root/redis-3.2.9",
+        "rm -f  /etc/redis/redis.conf",
+        "rm -f  /etc/init.d/redis",
+        "tar  -xzvf  redis-3.2.9.tar.gz",
+        "cd  redis-3.2.9",
+        "make",
+        "cd  deps/",
+        "make  hiredis  jemalloc  linenoise  lua  geohash-int",
+        "cd ..",
+        "make",
+        "make  test",
+        "rpm  -ivh  tcl-8.5.7-6.el6.x86_64.rpm",
+        "cd  /etc && mkdir  redis && cd  /var && mkdir  redis && cd  /var/redis && mkdir  data  log  run",
+        "cp  /home/package/redis.conf  /etc/redis",
+        "cd  /usr/local/bin && ./redis-server  /etc/redis/redis.conf",
+        "lsof  -i:6379",
+        "ps  -ef  |  grep  redis",
+        "./redis-cli  -h 127.0.0.1 -a  Fb@crgs_1lSi",
+        "set  myname  'carl'",
+        "get myname",
+        "exit",
+        "cd   /usr/local/bin && ./redis-cli  -h 127.0.0.1 -a  Fb@crgs_1lSi  shutdown",
+        "cp  /home/package/redis   /etc/init.d && chmod  a+x  /etc/init.d/redis && chkconfig  --add  /etc/init.d/redis && chkconfig  redis   on",
+        "service   redis   start",
+        "service   redis   stop",
+        "service   redis   restart",
+        "service   redis   status",
+        // ----es
+        // "adduser  es",
+        // "passwd  es",
+        // "cd  /home/es && tar  -xzvf  jdk-8u241-linux-x64.tar.gz",
+        // "cd  /home/es && tar  -xzvf elasticsearch-7.6.0-linux-x86_64.tar.gz",
+        // "vim  /home/es/elasticsearch-7.6.0/bin/elasticsearch",
+        // "vim  /home/es/elasticsearch-7.6.0/config/jvm.options",
+        // "vim  /home/es/elasticsearch-7.6.0/config/elasticsearch.yml",
+        // "cd /home/es/elasticsearch-7.6.0/plugins/ && mkdir ik && mv /home/es/elasticsearch-analysis-ik-7.6.0.zip ik/ && cd /home/es/elasticsearch-7.6.0/plugins/ik && unzip elasticsearch-analysis-ik-7.6.0.zip",
+        // "cp  /home/es/elasticsearch   /etc/init.d && chmod  a+x  /etc/init.d/elasticsearch && chkconfig  --add  /etc/init.d/elasticsearch && chkconfig  elasticsearch  on",
+        // ---mysql
+        // "systemctl  stop  mysql.service",
+        // "rpm  -qa  |  grep -i mysql  |  xargs  rpm  -e  --nodeps",
+        // "find  /  -name  mysql",
+        // "rm  -rf  /etc/my.cnf",
+        // "rpm  -ivh  MySQL-client-5.5.62-1.el6.x86_64.rpm && rpm  -ivh  MySQL-server-5.5.62-1.el6.x86_64.rpm",
+    ];
+
+    $(() => {
+        steps.map(create);
+        clickBind();
+    });
+
+    function create(item, index) {
+        // const header = `<header class="col-md-12"><h3>${item.text}</h3></header>`;
+        const input = `<div class="col-md-8"><input id="input-${index}" class="form-control input-sm" value="${item}" readonly/></div>`;
+        const button = `<div class="col-md-3"><button id="btn-${index}" class="btn btn-primary btn-sm btn-wd">复制内容</button></div>`;
+        const row = `<label class="col-md-1 control-label" for="input-${index}">${index}:</label><div class="col-md-11">${input}${button}</div>`;
+        // const section = `<section class="row">${header}${row}</section>`;
+        const section = `<section class="row mgb">${row}</section>`;
+        $('.container').append($(section));
+    }
+
+    function clickBind() {
+        for (let i = 0; i < steps.length; i++) {
+            $(`#btn-${i}`).on('click', function () {
+                $(this).text('已复制');
+                navigator.clipboard.writeText($(`#input-${i}`).val());
+                copied();
+            });
+        }
+    }
+
+    function copied() {
+        if (!$('.alert').hasClass('fade')) return;
+        $('.alert').toggleClass('fade');
+        setTimeout(() => $('.alert').toggleClass('fade'), 2000);
+    }
+</script>
+
+</html>

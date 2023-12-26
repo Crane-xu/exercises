@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8">
+		<title>css练习</title>
+		<link rel="stylesheet" type="text/css" href="../css/6.css"/>
+	</head>
+	<body>
+		<p>北京欢迎您</p>
+		<h1 id="p_title"><em>HTML</em>基础</h1>
+		<p><em>HTML</em>，超文本标记语言。</p>
+		<div>
+		</div>
+		<big><b>title属性值有lang的td元素会被选择</b></big>
+		<table border="1">
+			<tr>
+				<td>th[lang]</td>
+				<td>无属性</td>
+				<td lang="">lang=""</td>
+				<td lang="en">lang="en"</td>
+				<td lang="cn">lang="cn"</td>
+			</tr>
+		</table>
+		<br>
+		<big><b>title属性值包含"c,且c前后只能有空格"的td元素会被选择</b></big>
+		<table border="1">
+			<tr>
+				<td>[title~="c"]</td>
+				<td>无属性</td>
+				<td title="c">title="c"</td>
+				<td title="c d">title="c d"</td>
+				<td title="c-d">title="c-d"</td>
+				<td title="cd">title="cd"</td>
+				<td title="d c">title="d c"</td>
+				<td title="dc">title="dc"</td>
+			</tr>
+		</table>
+		<br>
+		<big><b>title属性值"h,且h只能为独立单词，后面可连跟字符"的td元素会被选择</b></big>
+		<table border="1">
+			<tr>
+				<td>[title|="h"]</td>
+				<td>无属性</td>
+				<td title="h">title="h"</td>
+				<td title="h i">title="h i"</td>
+				<td title="h-i">title="h-i"</td>
+				<td title="hi">title="hi"</td>
+				<td title="i h">title="i h"</td>
+				<td title="i h j">title="i h j"</td>
+			</tr>
+		</table>
+		<p id="p_content"><abbr title="HyperText Markup Language">HTML</abbr>,超文本标记语言。HTML文档就是我们所说的网页，是互联网中最重要的信息交流媒体。</p>
+
+		<h1 class="important">HTML的历史</h1>
+		<p>HTML 2.0：在1993年6月作为互联网工程工作小组（iEE）工作草案发布</p>
+		<p>HTML 3.2：在1993年6月作为互联网工程工作小组（iEE）工作草案发布</p>
+		<p>HTML 4.0：在1993年6月作为互联网工程工作小组（iEE）工作草案发布</p>
+		<p class="important">HTML 4.01：在1993年6月作为互联网工程工作小组（iEE）工作草案发布</p>
+
+		<a href="http://www.baidu.com">www.baidu.com</a><br>
+		<a href="http://www.sohu.com">www.sohu.com</a><br>
+		<a href="http://www.sina.com">www.sina.com</a><br>
+		<input type="text"><br>
+		<ul>
+			<li>吃</li>
+			<li>吃</li>
+			<li>吃</li>
+			<li>吃</li>
+		</ul>
+		<p>北京欢迎您</p>
+		<p>北京欢迎您</p>
+		<div>
+			北京欢迎您<br />
+			北京欢迎您
+		</div>
+		<h2>百度</h2>
+		<h3>百度</h3>
+	</body>
+</html>
+<script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hover滚动</title>
+    <style>
+        .card{
+            white-space: nowrap;
+            overflow-x: scroll;
+            line-height: 200px;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <p class="card">云想衣裳花想容，春风拂槛露华浓。云想衣裳花想容，春风拂槛露华浓。云想衣裳花想容，春风拂槛露华浓。云想衣裳花想容，春风拂槛露华浓。云想衣裳花想容，春风拂槛露华浓。云想衣裳花想容，春风拂槛露华浓。云想衣裳花想容，春风拂槛露华浓。云想衣裳花想容，春风拂槛露华浓。云想衣裳花想容，春风拂槛露华浓。云想衣裳花想容，春风拂槛露华浓。</p>
+</body>
+<script>
+    var timer = null;
+    let p = document.querySelector(".card");
+    p.addEventListener("mouseenter",function(e){
+        let that = this;
+        const mouseX = e.offsetX;
+        // scrollLeft：dom的已滚动宽度 、offsetWidth：dom的视区宽度 、scrollWidth：dom的可滚动宽度
+        if(mouseX>(that.offsetWidth/2)){
+            timer = setTimeout(function fn(){
+                if((that.scrollLeft + that.offsetWidth) == that.scrollWidth ){
+                    clearTimeout(timer);
+                }else{
+                    timer = setTimeout(fn,100);
+                }
+                that.scrollLeft+=10;
+            },100);
+        }else{
+            timer = setTimeout(function fn(){
+                if(!that.scrollLeft){
+                    clearTimeout(timer);
+                }else{
+                    timer = setTimeout(fn,100);
+                }
+                that.scrollLeft-=10;
+            },100);
+        }
+    });
+    p.addEventListener("mouseleave",function(e){
+        clearTimeout(timer);
+    });
+</script>
+</html>

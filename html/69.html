@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            width: 1000px;
+            min-height: 200px;
+            position: relative;
+        }
+        .move{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid black;
+            position: absolute;
+            left: 0;
+            top: 0;
+            overflow: hidden;
+        }
+        .move img{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <script>
+        function fnmove(event){
+            var container = document.getElementsByClassName("container")[0];
+            var move = document.getElementsByClassName("move")[0];
+            var bigImg = document.getElementsByTagName("img")[1];
+            
+            var x=event.clientX;
+            var l=container.offsetLeft;
+            var moveLeft=x-l-move.offsetWidth/2;
+            //边界检测
+            if(moveLeft<=0)moveLeft=0;
+            var maxLeft=container.offsetWidth-move.offsetWidth;
+            if(moveLeft>=maxLeft)moveLeft=maxLeft;
+            move.style.left=moveLeft+'px';
+            //计算大图移动值
+            var bigImgLeft=(moveLeft+move.offsetWidth/2)/container.offsetWidth* bigImg.offsetWidth-move.offsetWidth/2;
+            bigImg.style.left=-bigImgLeft+'px';
+
+            var y=event.clientY;
+            var t=container.offsetTop;
+            var moveTop=y-t-move.offsetHeight/2;
+            //边界检测
+            if(moveTop<=0)moveTop=0;
+            var maxTop=container.offsetHeight-move.offsetHeight;
+            if(moveTop>=maxTop)moveTop=maxTop;
+            move.style.top=moveTop+'px';
+            //计算大图移动值
+            var bigImgTop=(moveTop+move.offsetHeight/2)/container.offsetHeight* bigImg.offsetHeight-move.offsetHeight/2;
+            bigImg.style.top=-bigImgTop+'px';
+        }
+        function fnshow(){
+            var move = document.getElementsByClassName("move")[0];
+            move.style.opacity='1';
+        }
+        function fnhide(){
+            var move = document.getElementsByClassName("move")[0];
+            move.style.opacity='0';
+        }
+    </script>
+</head>
+<body>
+    <div class="container" onmousemove="fnmove(event);" onmouseover="fnshow()" onmouseout="fnhide()">
+        <img src="../img/30.jpeg" width="100%">
+        <div class="move">
+            <img src="../img/30.jpeg">
+        </div>
+    </div>
+</body>
+</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

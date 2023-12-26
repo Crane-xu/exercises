@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片轮换</title>
+    <style>
+        #img1 {
+            width: 380px;
+            border: 5px solid orange;
+            position: relative;
+        }
+
+        #img1 img {
+            display: block;
+        }
+
+        #img1 div {
+            border: 1px solid orange;
+            background: #f3f3f3;
+            padding: 1px 5px;
+            position: absolute;
+            bottom: 8px;
+            font-weight: bold;
+        }
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        var arr = ['../img/21.jpg', '../img/22.jpg', '../img/23.jpg'];
+        var k = 0;
+        var t;
+        function changeSrc() {
+            k++;
+            if (k > 2) {
+                k = 0;
+            }
+            var path = arr[k];
+            $("#img1 img").attr("src", path);
+            $('#img1 div').css('background', '');
+            $("#img1 div:eq(" + k + ")").css('background', 'orange');
+            t = setTimeout(changeSrc, 1000);
+        }
+        $(function () {
+            t = setTimeout(changeSrc, 1000);
+            $("#img1").mouseenter(function () {
+                clearTimeout(t);
+            })
+
+            $("#img1").mouseenter(function () {
+                t = setTimeout(changeSrc, 1000);
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div id="img1">
+        <img src="../img/21.jpg" alt="" srcset="" width="380px">
+        <div style="right: 60px;background: orange;">1</div>
+        <div style="right: 35px;">2</div>
+        <div style="right: 10px;">3</div>
+    </div>
+</body>
+
+</html>
+<script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

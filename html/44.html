@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery效果</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 500px;
+            height: 300px;
+            border: 5px solid orange;
+            padding: 20px;
+            margin: 30px;
+        }
+        .header{
+            height: 100px;
+            line-height: 100px;
+            background-color: #abcdef;
+        }
+        .content{
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .content .left{
+            width: 20%;
+            height: 100%;
+            background-color: #abcdef;
+            float: left;
+        }
+        .content .right{
+            width: 80%;
+            height: 100%;
+            background-color: #fff000;
+            float: right;
+        }
+
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        $(function(){
+            var w = $('#div1').width();
+            var h = $('#div1').height();
+            var innerw = $('#div1').innerWidth();
+            var innerh = $('#div1').innerHeight();
+            var outerw = $('#div1').outerWidth();
+            var outerh = $('#div1').outerHeight();
+            //alert("width()="+w+":height="+h);
+            //alert("innerWidth()="+innerw+":innerHeight="+innerh);
+            //alert("outerWidth()="+outerw+":outerHeight="+outerh);
+
+            var winw = $(window).width();
+            var winh = $(window).height();
+            //alert("窗口宽="+winw+":窗口高="+winh);
+            //$(".left").css("height",winh-110+"px");
+
+            $('#btn1').click(function(){
+                alert($('#test0').text());
+            })
+
+            $('#btn2').click(function(){
+                alert($('#test0').html());
+            })
+
+            $('#btn3').click(function(){
+                alert($('#inp1').val());
+            })
+
+            $('#btn4').click(function(){
+                alert($('#test0').attr("title"));
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <!-- <div id="div1"></div> -->
+    <div class="header">header</div>
+    <div class="content">
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <p id="test0" title="p标签的title">床前<b>明月</b>光</p>
+    <input id="inp1" type="text" value="Hello">
+    <button id="btn1">显示文本元素</button>
+    <button id="btn2">显示html元素</button>
+    <button id="btn3">显示val</button>
+    <button id="btn4">获取属性</button>
+</body>
+</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

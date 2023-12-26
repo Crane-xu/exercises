@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹窗移动</title>
+    <style>
+        .big-link{
+            display: block;
+            margin-top: 10px;
+            font-size: 70px;
+            color: #06f;
+        }
+        .mask{
+            position: absolute;
+            top: 0;
+            background-color: #777;
+        }
+        .reveal-model{
+            display: none;
+            top: 100px;
+            left: 50%;
+            margin-left: -300px;
+            width: 520px;
+            background: #eee;
+            position: absolute;
+            z-index: 101;
+            padding: 30px 40px 34px;
+            -moz-border-radius:5px;
+            -webkit-border-radius:5px;
+            border-radius: 5px;
+            -moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+            -webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+            box-shadow: 0 0 10px rgba(0,0,0,.4);
+        }
+        #myModal h1{
+            background: red;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        function s(){
+            $("#mask").css("height",$(document).height());
+            $("#mask").css("width",$(document).width());
+            $("#mask").show();
+            $("#myModal").show();
+        }
+        function h(){
+            $("#mask").css("height",$(document).height());
+            $("#mask").css("width",$(document).width());
+            $("#mask").hide();
+            $("#myModal").hide();
+        }
+        var x0,y0,left0,top0,Xn,Yn,x1,y1;
+        var start=false;
+        $(function(){
+            $("#myModal>h1").mousedown(function(e){
+                x0=e.pageX;
+                y0=e.pageY;
+                left0=parseInt($("#myModal").css('left'));
+                top0=parseInt($("#myModal").css('top'));
+                start=true;
+            })
+            $("#myModal>h1").mouseup(function(e){
+                start=false;
+            })
+            $(document).mousemove(function(e){
+                if(start){
+                    Xn=e.pageX;
+                    Yn=e.pageY;
+                };
+                x1=x0-Xn;
+                y1=y0-Yn;
+                $("#myModal").css('left',left0-x1+'px');
+                $("#myModal").css('top',top0-y1+'px');
+            })
+        })
+    </script>
+</head>
+<body>
+    <a href="#" class="big-link" onclick="s()"><h3>登录</h3></a>
+    <div id="mask" class="mask"></div>
+    <div id="myModal" class="reveal-model">
+        <h1><span>登录</span><a href="JavaScript:h()">X</a></h1>
+        <p>你好，请输入个人信息</p>
+    </div>
+</body>
+</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

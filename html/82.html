@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义元素</title>
+</head>
+<body>
+</body>
+<script>
+    /*
+        浏览器会尝试将无法识别的元素作为通用元素整合进 DOM。当然，这些元素默认也不会做任何通
+        用 HTML 元素不能做的事。来看下面的例子，其中胡乱编的 HTML 标签会变成一个 HTMLElement 实例
+    */
+    // document.body.innerHTML = ` 
+    // <x-foo >I'm inside a nonsense element.</x-foo > 
+    // `; 
+    // console.log(document.querySelector('x-foo') instanceof HTMLElement); // true 
+    
+    /*  
+        自定义元素在此基础上更进一步。利用自定义元素，可以在<x-foo>标签出现时为它定义复杂的行
+        为，同样也可以在 DOM 中将其纳入元素生命周期管理。自定义元素要使用全局属性 customElements，
+        这个属性会返回 CustomElementRegistry 对象。
+    */
+
+
+    /* 
+        调用 customElements.define()方法可以创建自定义元素。下面的代码创建了一个简单的自定
+        义元素，这个元素继承 HTMLElement： 
+    */
+    class FooElement extends HTMLElement {
+        constructor(){
+            super();
+            this.bar = true;
+            console.log('bar');
+        }
+    } 
+    customElements.define('x-foo', FooElement); 
+    document.body.innerHTML = ` 
+    <x-foo >I'm inside a nonsense element.</x-foo > 
+    `; 
+    console.log(document.querySelector('x-foo') instanceof FooElement); // true
+</script>
+</html>

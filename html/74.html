@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>svg时钟</title>
+    <script>
+        function updateTime(){                      //更新svg时钟来显示当前时间
+            var now = new Date();                   //当前时间
+            var min = now.getMinutes();             //分钟
+            var hour = (now.getHours()%12)+min/60;  //转换成可以在时钟上表示的时间
+            var minangle = min*6;                   //每6°表示一分钟
+            var hourangle = hour*30;                //每30°表示一小时
+
+            // 获取表示时钟时针和分针的SVG元素
+            var minhand = document.getElementById("minutehand");
+            var hourhand = document.getElementById("hourhand");
+
+            // 设置这些元素的SVG属性，将他们移动到钟面上
+            minhand.setAttribute("transform","rotate("+minangle+",50,50)");
+            hourhand.setAttribute("transform","rotate("+hourangle+",50,50)");
+
+            // 每一分钟更新下始终显示时间
+            setTimeout(updateTime,60000);
+        }
+    </script>
+    <style>
+        /* 下面定义的所有CSS样式都会作用在svg元素上 */
+        /* 用于时钟的全局样式 */
+        #clock{
+            /* 黑线 */
+            stroke: black;  
+            /* 圆角 */
+            stroke-linecap: round;
+            /* 以浅蓝灰色为背景 */
+            fill: #eef;
+        }
+        /* 时钟的外边框 */
+        #face{ stroke-width: 3px; }
+        /* 标记每个小时的线段 */
+        #ticks{ stroke-width: 2; }
+        /* 相对较粗的时针 */
+        #hourhand{ stroke-width: 5px; }
+        /* 相对较细的分针 */
+        #minutehand{ stroke-width: 3px; }
+        /* 如何绘制数字 */
+        #numbers{
+            font: sans-serif 7pt bold;
+            /* 该属性用于对齐（开始对齐、中间对齐或结束对齐）相对于给定点的文本字符串 */
+            text-anchor: middle;
+            stroke: none;
+            fill: black;
+        }
+    </style>
+</head>
+<body onload="updateTime()">
+    <!-- viewBox是坐标系，width和height是指屏幕大小 -->
+    <svg id="clock" viewBox="0 0 100 100" width="500" height="500">
+        <defs>
+            <!-- 定义下拉阴影的滤镜 -->
+            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur" />
+                <feOffset in="blur" dx="1" dy="1" result="shadow" />
+                <feMerge>
+                    <feMergeNode in="SourceGraphic" />
+                    <feMergeNode in="shadow" />
+                </feMerge>
+            </filter>
+        </defs>
+        <!-- 钟面 -->
+        <circle id="face" cx="50" cy="50" r="45" />
+        <!-- 12小时的刻度 -->
+        <g id="ticks">
+            <line x1='50' y1='5.000' x2='50.00' y2='10.00' />
+            <line x1='72.50' y1='11.03' x2='70.00' y2='15.36' />
+            <line x1='88.97' y1='27.50' x2='84.64' y2='30.00' />
+            <line x1='95.00' y1='50.00' x2='90.00' y2='50.00' />
+            <line x1='88.97' y1='72.50' x2='84.64' y2='70.00' />
+            <line x1='72.50' y1='88.97' x2='70.00' y2='84.64' />
+            <line x1='50.00' y1='95.00' x2='50.00' y2='90.00' />
+            <line x1='27.50' y1='88.97' x2='30.00' y2='84.64' />
+            <line x1='11.03' y1='72.50' x2='15.36' y2='70.00' />
+            <line x1='5.000' y1='50.00' x2='10.00' y2='50.00' />
+            <line x1='11.03' y1='27.50' x2='15.36' y2='30.00' />
+            <line x1='27.50' y1='11.03' x2='30.00' y2='15.36' />
+        </g>
+        <!-- 标记重要的几个刻度 -->
+        <g id="numbers">
+            <text x="50" y="24">12</text>
+            <text x="85" y="56">3</text>
+            <text x="50" y="88">6</text>
+            <text x="15" y="55">9</text>
+        </g>
+        <!-- 初始绘制成竖直的指针，之后通过js代码来做旋转 -->
+        <!-- 给指针添加阴影 -->
+        <g id="hands" filter="url(#shadow)">
+            <line id="hourhand" x1="50" y1="50" x2="50" y2="24" />
+            <line id="minutehand" x1="50" y1="50" x2="50" y2="20" />
+        </g>
+    </svg>
+</body>
+</html>

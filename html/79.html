@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>读取拖放文件</title>
+    <style>
+        #droptarget {
+            height: 100px;
+            width: 100px;
+            color: #fff;
+            font-size: 40px;
+            line-height: 100px;
+            text-align: center;
+            background-color: blueviolet;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            /*  
+                像拖放图片或链接一样触发 drop 事件。被放置
+                的文件可以通过事件的 event.dataTransfer.files 属性读到，
+                这个属性保存着一组 File 对象，就像文本输入字段一样
+            */
+            let droptarget = document.getElementById("droptarget");
+            function handleEvent(event) {
+                let info = "",
+                    output = document.getElementById("output"),
+                    files, i, len;
+                //必须取消 dragenter、dragover 和 drop 的默认行为
+                event.preventDefault();
+                if (event.type == "drop") {
+                    files = event.dataTransfer.files;
+                    i = 0;
+                    len = files.length;
+                    while (i < len) {
+                        info += `${files[i].name} (${files[i].type}, ${files[i].size} bytes)<br>`;
+                        i++;
+                    }
+                    output.innerHTML = info;
+                }
+            }
+            droptarget.addEventListener("dragenter", handleEvent);
+            droptarget.addEventListener("dragover", handleEvent);
+            droptarget.addEventListener("drop", handleEvent);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 
+    默认情况下，图片、链接和文本是可拖动的，这意味着无须额外代码用户便可以拖动它们。文本只
+    有在被选中后才可以拖动，而图片和链接在任意时候都是可以拖动的。
+    我们也可以让其他元素变得可以拖动。HTML5 在所有 HTML 元素上规定了一个 draggable 属性，
+    表示元素是否可以拖动。图片和链接的 draggable 属性自动被设置为 true，而其他所有元素此属性
+    的默认值为 false。如果想让其他元素可拖动，或者不允许图片和链接被拖动，都可以设置这个属性。 -->
+    <div>可拖动元素：</div>
+    <img src="./../img/19starwbery.jpg" draggable="true"> 
+
+    <div id="droptarget">+</div>
+    <div id="output"></div>
+</body>
+
+</html>
