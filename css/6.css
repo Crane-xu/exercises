@@ -1,0 +1,110 @@
+/*input:focus{
+	background-color: aqua;
+}
+
+div{
+	background-color: blueviolet;
+	width: 400px;
+	height: 400px;
+}
+
+/* 元素选择器 */
+
+/*
+h1{
+	color: red;
+}
+*/
+
+/* 通配符选择器 */
+
+/*
+*{
+	color: red;
+}
+*/
+
+
+/* 属性选择器 */
+td[lang]{
+	color:red;
+}
+td[title="a"]{
+	color:red;
+}
+td[title~="c"]{
+	color:red;
+}
+td[title|="h"]{
+	color:red;
+}
+
+
+/* 派生/后代选择器 */
+/*h1 em也行
+h1>em{     
+	color: red;
+}
+
+/*相邻兄弟选择器 标签要放一起*/
+/*
+h1+p{		
+	color: red;
+}
+*/
+
+/* id选择器 */
+#p_title,
+#p_content abbr{		
+	color:blue;
+}
+
+/* 类选择器 */
+.important{
+	color:red;
+}
+
+p.important{
+	color:red;
+}
+
+/* 伪类选择器 */
+a:link{
+	font-size: 20px;
+}
+a:hover{
+	color:red;
+}
+a:active{
+	font-size: 30px;
+}
+input:focus{
+	background-color:yellow;
+}
+li:first-child{
+	font-size: 30px;
+}
+
+/* 伪元素选择器 */
+p:first-child:first-letter{
+	color: #ff0000;
+	font-size:xx-large;
+}
+
+p:first-child:first-line{
+	color: #0000ff;
+	font-variant:small-caps;
+}
+
+div:first-line{
+	color: #0000ff;
+	font-variant:small-caps;	
+}
+
+h2:before{
+	content: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png);
+}
+
+h3:after{
+	content: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_86d58ae1.png);
+}

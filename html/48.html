@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>两级联动</title>
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script>
+        function showCity(){
+            var v=$("[name='province']").val();
+            var ob=$("[name='city']");
+            switch(v){
+                case '1':
+                    ob.empty();
+                    ob.append("<option value='11'>石家庄市</option>");
+                    ob.append("<option value='12'>保定市</option>");
+                    ob.append("<option value='13'>张家口市</option>");
+                    break;
+                case '2':
+					ob.empty();
+					ob.append("<option value='21'>烟台市</option>");
+					ob.append("<option value='22'>济南市</option>");
+					ob.append("<option value='23'>青岛市</option>");
+					break;
+            }
+        }
+
+        $(function(){
+            showCity();
+        })
+    </script>
+</head>
+<body>
+    <select name="province" onchange="showCity()">
+        <option value="1">河北</option>
+        <option value="2">山东</option>
+    </select>
+    <select name="city">
+    </select>
+</body>
+</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

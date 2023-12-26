@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/31.js"></script>
+</head>
+
+<body onscroll="scrollChange()" onkeydown="keydown(event)" onkeyup="keyup(event)">
+    <div>
+        <br>
+        <font id="srpos" style="position: relative;top: 0px;">滚动条滚动到0px</font>
+    </div>
+    <form name="myform">
+        <input type="text" name="uname" onfocus="myfocus('uname','unote')" onblur="myblur('uname','unote')" />
+        <font id="unote"></font>
+        <br>
+        <input type="text" name="pwd" onfocus="myfocus('pwd','pnote')" onblur="myblur('pwd','pnote')" />
+        <font id="pnote"></font>
+    </form>
+    <br>
+    坦克运行状态：<span id="moveState">静止</span><br>
+    坦克攻击状态：<span id="attachState"></span>
+</body>
+
+</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

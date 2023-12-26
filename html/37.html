@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css3选择器</title>
+    <style>
+        h2~p {
+            color: red;
+        }
+        td[lang]{
+            color: red;
+        }
+        td[title="a"]{
+            color: red;
+        }
+        td[title~="c"]{
+            color: red;
+        }
+        /* l开头 */
+        td[title^="l"]{
+            color: red;
+        }
+        /* o结尾 */
+        td[title$="o"]{
+            color: red;
+        }
+        /* 含有x */
+        td[title*="x"]{
+            color: red;
+        }
+        /* 选择器匹配文档根元素。 */
+        :root{
+            font-size: 30px;
+        }
+        li:last-child{
+            color: red;
+        }
+        li:nth-child(2){
+            color: green;
+        }
+        :checked{
+            outline: 2px solid greenyellow;
+        }
+        :disabled{
+            color: hotpink;
+        }
+        .bgshux{
+            width: 100px;
+            height: 100px;
+            padding: 20px;
+            border: 5px dashed;
+            /* float: left; */
+            margin: 5px;
+            background: red;
+        }
+        .bgshuo{
+            width: 100px;
+            height: 100px;
+            padding: 20px;
+            border: 5px dashed;
+            /* float: left; */
+            margin: 5px;
+            background-image: url(../img/17watmlo.jpg);
+        }
+    </style>
+</head>
+<body>
+    <h1>一级标题</h1>
+    <p>这里不会变色</p>
+    <h2>二级标题</h2>
+    <p>这里会变色</p>
+    <h3>三级标题</h3>
+    <p>这里也会变色</p>
+
+    <table border="1">
+        <tr>
+            <td title="a">a</td>
+        </tr>
+        <tr>
+            <td title="c">c</td>
+        </tr>
+        <tr>
+            <td title="l">l</td>
+        </tr>
+        <tr>
+            <td title="o">o</td>
+        </tr>
+        <tr>
+            <td title="x">x</td>
+        </tr>
+    </table>
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+    </ul>
+    <br>
+    <button disabled="disabled">1</button>    <button>1</button>
+    <input type="checkbox" name="" id="" checked>    <input type="checkbox" name="" id="" >
+    <br>
+    <div class="bgshux"></div>
+    <div class="bgshux" style="background-clip: border-box;"></div>
+    <div class="bgshux" style="background-clip: padding-box;"></div>
+    <div class="bgshux" style="background-clip: content-box;"></div>
+    <br>
+    <div class="bgshuo" style="-webkit-background-origin: border-box;"></div>
+    <div class="bgshuo" style="-webkit-background-origin: padding-box;"></div>
+    <div class="bgshuo" style="-webkit-background-origin: content-box;"></div>
+    <br>
+
+    <br>
+    <div class="bgshuo"></div>
+    <div class="bgshuo" style="background-size: 30px;"></div>
+    <div class="bgshuo" style="background-size: 30px 60px;"></div>
+    <div class="bgshuo" style="background-size: 30%;"></div>
+    <div class="bgshuo" style="background-size: cover;"></div>
+    <div class="bgshuo" style="background-size: contain;"></div>
+
+    <br>
+    <p style="width: 100px;height: 30px;border: 1px solid red; overflow: hidden;text-overflow: clip; white-space: nowrap;">云想衣裳花想容，春风抚槛露华浓</p>
+    <p style="width: 100px;height: 30px;border: 1px solid red; overflow: hidden;text-overflow: ellipsis; white-space: nowrap;">云想衣裳花想容，春风抚槛露华浓</p>
+    <br>
+
+    <div style="height:100px;width: 100px;border: 1px solid green; border-radius: 10px;box-shadow: 10px 10px 10px 10px blueviolet;"></div>
+    <br>
+    <!-- 设了overflow才有用 -->
+    <div style="height:100px;width: 100px;border: 1px solid green;resize: both;overflow: auto;">两边可以调整宽高</div><br><br>
+    <div style="height:100px;width: 100px;border: 1px solid green;outline: 1px red solid; outline-offset: 10px;"></div>
+</body>
+</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

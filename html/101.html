@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css 属性</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+
+        input {
+            caret-color: red;
+            accent-color: green;
+        }
+
+        .position-inset {
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+            position: absolute;
+            /* top: 20px;
+            right: 25px;
+            left: 16px;
+            bottom: 23px; */
+            inset: 20px 25px 23px 16px;
+        }
+
+        img {
+            width: 300px;
+            height: 300px;
+            /* 元素内容与其背景的混合 */
+            mix-blend-mode: luminosity;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="position-inset"></div>
+    <form>
+        <input type="text" placeholder="Your Name" />
+        <input type="radio" id="html" />
+        <label for="html">HTML</label>
+        <input type="radio" id="css" />
+        <label for="css">CSS</label>
+        <input type="radio" id="js" />
+        <label for="js">JavaScript</label>
+    </form>
+</body>
+
+</html>

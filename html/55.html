@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会员登录</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: turquoise;
+        }
+        .main{
+            position: relative;
+            top: 5%;
+            /* text-align: center; */
+            background-color: turquoise;
+        }
+        .window{
+            margin: 100px auto;
+            width: 600px;
+            height: 300px;
+            border: 1px solid white;
+        }
+        .cav{
+            height: 40px;
+            line-height: 40px;
+            color: white;
+            background-color: teal;
+        }
+        .cav span{
+            margin-left: 10px;
+            font-size: 20px;
+        }
+        .table_font{
+            margin: 50px auto;
+            width: 400px;
+            height: 160px;
+            color: white;
+        }
+        .textBox{
+            height: 30px;
+            width: 260px;
+            background-color: turquoise;
+            border: 1px solid white;
+        }
+        .btn{
+            width: 110px;
+            height: 30px;
+            border: none;
+            color: cadetblue;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+            <div class="window">
+                <div class="cav"><span>网站后台管理系统</span></div>
+                    <form action="https://www.baidu.com" method="get">
+                        <table class="table_font">
+                            <tr>
+                                <td style="text-align: right;">用户名：</td>
+                                <td><input class="textBox" type="text" name="username" id="username" placeholder="请输入用户名"  required="required"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;"> 密码：</td>
+                                <td><input class="textBox" type="password" name="password" id="password" placeholder="请输入密码" required="required"></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspanr="2"></td>
+                                <td><input class="btn" type="submit" value="登录"></td>
+                            </tr>
+                        </table>
+                    </form>
+            </div>
+    </div>
+</body>
+</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

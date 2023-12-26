@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, rgba(238, 119, 82, 0.4), rgba(231, 60, 126, 0.4), rgba(35, 166, 213, 0.4), rgba(35, 213, 171, 0.4));
+}
+
+td {
+    width: 20px;
+    height: 20px;
+    background-color: #e3e3e3;
+}
+
+.operate-group {
+    position: relative;
+    top: 10vh;
+    left: 5vw;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    border-radius: 5px;
+}
+
+.input {
+    margin-top: 20px;
+    width: 200px;
+    height: 30px;
+    outline: 0;
+    background: #f2f2f2;
+    border: 0;
+    font-size: 14px;
+}
+
+.inline-input {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inline-input input {
+    margin-top: 20px;
+    width: 60px;
+    height: 30px;
+    border: 0;
+    outline: 0;
+}
+
+.inline-input input:focus {
+    outline: 1px solid #787fec;
+}
+
+.inline-input input[type="button"] {
+    vertical-align: top;
+}
+
+.inline-input input[type="color"] {
+    width: 130px;
+}
+
+input[type="button"]:hover,
+input[type="button"]:active,
+input[type="button"]:focus {
+    background: #d6e7d7;
+    outline: 1px solid #787fec;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>浮动和定位</title>
+    <link rel="stylesheet" type="text/css" href="../css/20.css">
+    <style type="text/css"></style>
+    <script></script>
+</head>
+<body>
+    <p>
+        <img src="../img/2.jpg" class="img1">唧唧复唧唧，木兰当户织。不闻机杼声，唯闻女叹息。
+        问女何所思，问女何所忆。女亦无所思，女亦无所忆。昨夜见军帖，可汗大点兵，军书十二卷，卷卷有爷名。阿爷无大儿，木兰无长兄，愿为市鞍马，从此替爷征。
+    </p>
+    <p>
+        <img src="../img/2.jpg" class="img2">唧唧复唧唧，木兰当户织。不闻机杼声，唯闻女叹息。
+        问女何所思，问女何所忆。女亦无所思，女亦无所忆。昨夜见军帖，可汗大点兵，军书十二卷，卷卷有爷名。阿爷无大儿，木兰无长兄，愿为市鞍马，从此替爷征。
+    </p>
+    <p>
+        <img src="../img/2.jpg" class="img3">唧唧复唧唧，木兰当户织。不闻机杼声，唯闻女叹息。
+        问女何所思，问女何所忆。女亦无所思，女亦无所忆。昨夜见军帖，可汗大点兵，军书十二卷，卷卷有爷名。阿爷无大儿，木兰无长兄，愿为市鞍马，从此替爷征。
+    </p>
+    <p>雄兔脚扑朔，雌兔眼迷离；双兔傍地走，安能辨我是雄雌？</p>
+    <img src="../img/2.jpg">
+    <img src="../img/2.jpg" class="img4">
+    <p>正常元素框</p>
+    <div style="border:1px solid;">
+        问女何所思，问女何所忆。女亦无所思，女亦无所忆。昨夜见军帖，可汗大点兵，军书十二卷，卷卷有爷名。阿爷无大儿，木兰无长兄，愿为市鞍马，从此替爷征。
+    </div>
+    <p></p>
+    <div class="div1">
+        问女何所思，问女何所忆。女亦无所思，女亦无所忆。昨夜见军帖，可汗大点兵，军书十二卷，卷卷有爷名。阿爷无大儿，木兰无长兄，愿为市鞍马，从此替爷征。
+    </div>
+    <p>设定宽高的元素框，出现了超出元素的情况</p>
+    <div class="div2">
+        问女何所思，问女何所忆。女亦无所思，女亦无所忆。昨夜见军帖，可汗大点兵，军书十二卷，卷卷有爷名。阿爷无大儿，木兰无长兄，愿为市鞍马，从此替爷征。
+    </div>
+    <p></p>
+    <div class="div3">
+        问女何所思，问女何所忆。女亦无所思，女亦无所忆。昨夜见军帖，可汗大点兵，军书十二卷，卷卷有爷名。阿爷无大儿，木兰无长兄，愿为市鞍马，从此替爷征。
+    </div>
+    <p></p>
+    <div class="div4">
+        问女何所思，问女何所忆。女亦无所思，女亦无所忆。昨夜见军帖，可汗大点兵，军书十二卷，卷卷有爷名。阿爷无大儿，木兰无长兄，愿为市鞍马，从此替爷征。
+    </div>
+    <p id="hideinfo" class="p1">这条信息默认是隐藏的</p>
+	<button type="button" onclick="document.getElementById('hideinfo').style.display='';">显示</button>
+	<button type="button" onclick="document.getElementById('hideinfo').style.display='none';">隐藏</button>
+	<br>
+	<p><span class="span1">北京</span>欢迎您</p>
+	<div class="inline">
+		北京
+	</div>
+	<div class="inline">
+		欢迎你
+	</div>
+	<br>
+	<span class="inline_box">
+		HTML
+	</span>
+	<span class="inline_box">
+		CSS
+	</span>
+	<span class="inline_box">
+		JavaScript
+	</span>
+	<span class="inline_box">
+		JQuery
+	</span>
+	<ul>
+		<li>语文</li>
+		<li>语文</li>
+		<li>语文</li>
+		<li>语文</li>
+		<li>语文</li>
+		<li>语文</li>
+		<li>语文</li>
+		<li>语文</li>
+	</ul>
+	<ul>
+		<li class="horizontal">语文</li>
+		<li class="horizontal">语文</li>
+		<li class="horizontal">语文</li>
+		<li class="horizontal" style="clear: left;">物理</li>
+		<li class="horizontal">语文</li>
+		<li class="horizontal">语文</li>
+		<li class="horizontal">语文</li>
+		<li class="horizontal">语文</li>
+	</ul>
+	<span>蓝色的div位于正常文档流中，红色的div脱离了文档里</span>
+	<div class="div5"></div>
+	<div class="div6"></div>
+	<span>绿色div和粉色div都设置成绝对定位div，但粉色div它的父元素是绿色div，所以粉色div计算相对位置是根据绿色div的原点计算的</span>
+	<div class="div7"></div>
+	<div class="div8"></div>
+	
+	<div class="div9"></div>
+	<div class="div10"></div>
+	<div class="div11"></div>
+	
+	<div class="div12"></div>
+	<div class="div13"></div>
+	<div class="div14"></div>
+	<div class="div15"></div>
+</body>
+</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

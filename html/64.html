@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>动态菜单</title>
+		<style type="text/css"> 			
+			.main{
+				float: left;
+				position: relative;
+				top:-15px;
+				left:-190px
+			}
+ 			.box{
+				float: left;
+				width: 150px;
+				height: 321px;
+				border: 1px solid red;
+			}
+			li{
+				width: 150px;
+				list-style: none;
+				margin-bottom: 2px;
+			}
+			.oneMenu{
+				height: 40px;
+				line-height: 40px;
+				font-size: 18px;
+				font-weight: bold;
+				border-radius: 10px;
+				background-color: #FF0000;
+				color: #FFFFFF;
+				cursor: pointer;
+			}
+		</style>
+		<script src="../js/jquery-3.5.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(".secondMenu").hide();
+				$(".secondMenu:first").slideDown();
+				$(".oneMenu").click(function(){
+					var $flag=$(this).next(".secondMenu").css("display");
+					if($flag=='block')return;
+					$(".secondMenu").slideUp();
+					$(this).next(".secondMenu").slideDown();
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="box"></div>
+		<div class="main">
+			<ul>
+				<li>
+					<div class="oneMenu">一级菜单</div>
+					<ul class="secondMenu" style="display: none;">
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+					</ul>
+				</li>
+				<li>
+					<div class="oneMenu">一级菜单</div>
+					<ul class="secondMenu" style="display: none;">
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+					</ul>
+				</li>
+				<li>
+					<div class="oneMenu">一级菜单</div>
+					<ul class="secondMenu" style="display: none;">
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+					</ul>
+				</li>
+				<li>
+					<div class="oneMenu">一级菜单</div>
+					<ul class="secondMenu" style="display: none;">
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+					</ul>
+				</li>
+				<li>
+					<div class="oneMenu">一级菜单</div>
+					<ul class="secondMenu" style="display: none;">
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+						<li>二级菜单</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

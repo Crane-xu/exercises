@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>draw pixmap</title>
+  <style>
+    .image {
+      width: 30%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <img class="image" src="../img/36.jpg">
+    <img class="image" src="../img/37.jpg">
+  </div>
+  <hr>
+  <button id="export-image">下载为图片</button>
+</body>
+<script src="../js/html2canvas.min.js"></script>
+<script src="../js/FileSaver.min.js"></script>
+<script>
+  function exportImage() {
+    const container = document.querySelector("#container");
+    html2canvas(container).then(function (canvas) {
+        const url = canvas.toDataURL("image/png");
+        saveAs(url, `image.png`);
+      });
+  }
+  // 页面加载完成 初始化绑定
+  window.onload = function () {
+    //  图片导出按钮
+    const exportImageBtn = document.querySelector("#export-image");
+    exportImageBtn.addEventListener("click", exportImage, false);
+  };
+</script>
+
+</html>

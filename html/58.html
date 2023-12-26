@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立方体</title>
+    <style>
+        body{
+            text-align: center;
+            margin-top: 30%;
+            perspective: 500;
+            -webkit-perspective: 500; 
+        }
+        div{
+            height: 300px;
+            width: 300px;
+            margin: 50px auto;
+            text-align: center;
+            line-height: 300px;
+            font-size: 50px;
+            opacity: 0.5;
+            transform-style: preserve-3d;
+        }
+        .div1{
+            background-color: red;
+        }
+        .div2{
+            background-color: blue;
+            position: relative;
+            top: -350px;
+            left: 300px;
+            transform-origin: left;
+            transform: skewY(-96deg) rotateY(-255deg);        
+        }
+        .div3{
+            background-color: forestgreen;
+            position: relative;
+            top: -700px;
+            left: -300px;
+            transform-origin: right;
+            transform: skewY(79deg) rotateY(-64deg);
+        }
+        .div4{
+            background-color: yellow;
+            position: relative;
+            top: -750px;
+            transform-origin: top;
+            transform: skewX(11deg) rotateX(-167deg);
+        }
+        .div5{
+            background-color: pink;
+            position: relative;
+            top: -1700px;
+            transform-origin: bottom;
+            transform: skewX(13deg) rotateX(18deg);
+        }
+        .div6{
+            background-color: orangered;
+            position: relative;
+            top: -2132px;
+            left: -61px;
+            transform-origin: bottom;
+            z-index: -11;
+            transform: scale(0.8) skewY(180deg) rotateX(180deg);
+       }
+    </style>
+</head>
+<body>
+        <div class="div1">前</div>
+        <div class="div2">右</div>
+        <div class="div3">左</div>
+        <div class="div4">下</div>
+        <div class="div5">上</div>
+        <div class="div6">后</div>
+</body>
+</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

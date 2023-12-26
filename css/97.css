@@ -1,0 +1,96 @@
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #000200;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.main-warp {
+    color: #fff;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: transparent;
+}
+
+.leo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.orbit {
+    width: 165px;
+    height: 65px;
+    border: 1px solid #7acef5;
+}
+
+.orbit::after {
+    content: '';
+    width: 165px;
+    height: 65px;
+    border-radius: 50%;
+    border: 1px solid #ea87df;
+}
+
+.orbit:nth-child(1) {
+    animation: spin 2s linear 0s infinite;
+}
+
+.orbit:nth-child(2) {
+    animation: spin 2s linear .25s infinite;
+}
+
+.orbit:nth-child(3) {
+    animation: spin 2s linear .5s infinite;
+}
+
+.orbit:nth-child(4) {
+    animation: spin 2s linear .75s infinite;
+}
+
+
+.orbit:nth-child(1)::after {
+    animation: spin 2s linear .25s infinite;
+}
+
+.orbit:nth-child(2)::after {
+    animation: spin 2s linear .5s infinite;
+}
+
+.orbit:nth-child(3)::after {
+    animation: spin 2s linear .75s infinite;
+}
+
+.orbit:nth-child(4)::after {
+    animation: spin 2s linear 1s infinite;
+}

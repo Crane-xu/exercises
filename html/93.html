@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="94.html" method="get" target="swagger">
+        <input type="text" name="username" id="username" placeholder="请输入用户名"><br>
+        <input type="password" name="password" id="" autocomplete="off" placeholder="请输入密码"><br>
+        <input type="submit" value="提交">
+    </form>
+    <iframe frameborder="0" name="swagger"></iframe>
+
+    <iframe name="richedit" style="height: 100px; width: 100px"></iframe>
+    <script>
+        window.addEventListener("load", () => {
+            frames["richedit"].document.designMode = "on";
+
+            let filesList = document.getElementById("files-list");
+            filesList.addEventListener("change", (event) => {
+                output = document.getElementById("output");
+                files = event.target.files;
+                reader = new FileReader();
+                // Blob 第一个参数是一个包含实际数据的数组
+                blob = new Blob([files[0]],{type:files[0].type});
+                let src = window.URL.createObjectURL(blob);
+                output.src = src;
+            });
+        }); 
+    </script>
+
+    <input type="file" name="files-list" id="files-list" multiple>
+
+    <iframe id="output" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg=="></iframe>
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N皇后</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        canvas {
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script src="../js/QueenSolver.js"></script>
+    <script>
+        let canvas = document.getElementById("canvas");
+        let context = canvas.getContext("2d");
+
+        let borderWidth = Math.min(window.innerWidth, window.innerHeight);
+        borderWidth = Math.max(borderWidth, 600) - 20;
+        canvas.width = borderWidth;
+        canvas.height = borderWidth;
+
+        let queenSlover = new QueenSlover(8);
+        queenSlover.solveQueen();
+        const maps = queenSlover.getSolutions();
+        let map = [];
+        if(maps.length > 0){
+            // console.log(maps.length, 'len');
+            map = maps[0];
+        }else{
+            console.log('No Solution');
+        }
+
+        let roadWidth = borderWidth / map[0].length;
+        let roadHeight = borderWidth / map.length;
+
+        function renderBoard(context, map) {
+            for (let i = 0; i < map.length; i++) {
+                for (let j = 0; j < map[i].length; j++) {
+                    // 填充背景
+                    context.beginPath();
+                    context.rect(j * roadWidth, i * roadHeight, roadWidth, roadHeight);
+                    let color = '';
+                    if (i % 2) {
+                        color = j % 2 ? '#bf642d' : '#f5c6a4';
+                    } else {
+                        color = j % 2 ? '#f5c6a4' : '#bf642d';
+                    }
+                    context.fillStyle = color;
+                    context.fill();
+                    context.closePath();
+                    // 放置皇后
+                    const isQueen = map[i][j] === 8;
+                    if (isQueen) {
+                        let into = document.createElement("canvas");
+                        let ctx = into.getContext('2d');
+                        into.width = roadWidth;
+                        into.height = roadHeight;
+
+                        let image = new Image();
+                        image.src = '../img/chess-queen.png';
+                        image.onload = () => {
+                            ctx.drawImage(image, 0, 0, roadHeight, roadHeight);
+                            context.fillStyle = context.createPattern(into, 'repeat');
+                            context.fillRect(j * roadWidth, i * roadHeight, roadWidth, roadHeight);
+                        }
+                        continue;
+                    }
+                }
+            }
+        }
+
+        renderBoard(context, map);
+    </script>
+</body>
+
+</html>

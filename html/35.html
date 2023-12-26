@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>h5新</title>
+</head>
+<body>
+    <time datetime="2019-02-25">2019年2月5日</time>是中国的传统节日-- <mark>春节</mark><br>
+    <meter value="70" max="100">70%</meter><br>
+    <audio src="../video/周杰伦 - 安静.mp3" controls="controls" ></audio><br>
+    <!-- <video src="C:\Users\haier\Desktop\office\pic\20200921_101525.mp4" controls="controls" style="width: 40%;height: 40%;"></video> -->
+    <video src="../video/avenger.mp4" controls="controls" style="width: 40%;height: 40%;"></video>
+    <!-- contenteditable 页面内容可编辑 -->
+    <table border="1" contenteditable="true">
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </table>
+    <!-- spellcheck拼写检查 -->
+    <textarea spellcheck="true" cols="50" rows="5">
+    </textarea>
+    <br>
+    <!-- [size：可见选项数]  [multiple：多选] -->
+    <select size="7" multiple="multiple">
+        <optgroup label="一">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+            <option value="">4</option>
+        </optgroup>
+        <optgroup label="二">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+            <option value="">4</option>
+        </optgroup>
+    </select>
+    <br>
+    <button type="button"><img src="../img/6.png" alt=""></button>    <br>
+    <textarea readonly="readonly" cols="30" rows="10">这个文本域是只读的</textarea>    <br>
+    <input type="color" value="#ff0000">    <br>
+    <input type="datetime" name="" id=""><br>
+    <input type="datetime-local" name="" id=""><br>
+    <input type="month" name="" id=""><br>
+    <input type="week" name="" id=""><br>
+    <input type="email" name="" id=""><br>
+    <input type="number" name="" id=""><br>
+    <input type="range" name="" id="" max="100" min="0" step="10"><br>
+    <input type="search" name="" id=""><br>
+    <input type="tel" name="" id=""><br>
+    <input type="url" name="" id=""><br>
+
+    <form action="" method="get" oninput="x.value=parseInt(a.value)">
+     0<input type="range" id="a" value="50">100<br>
+     <output name="x" for="a">50</output><br>
+    </form>
+    <!-- formaction属性 -->
+    <form id="login" action="">
+        <label for="username"></label><input type="text" name="" id="username" placeholder="请输入用户名"><br>
+        <label for="password"><input type="password" name="password" id="" autofocus="autofocus" placeholder="请输入密码"></label><br>
+        <input type="submit" value="提交" formaction="login">
+        <button type="submit" formaction="regist">注册</button><br>
+    </form>
+    <!-- formmethod属性 -->
+    <form id="login" action="login" method="GET">
+        <label for="username"></label><input type="text" name="" id="username" placeholder="请输入用户名"><br>
+        <label for="password"><input type="password" name="password" id="" autofocus="autofocus" placeholder="请输入密码"></label><br>
+        <input type="submit" value="提交" formmethod="GET">
+        <input type="submit" value="提交" formmethod="POST">
+    </form>
+    <!-- formenctype属性 -->
+    <form action="" method="POST">
+        <label for="username"></label><input type="text" name="" id="username" placeholder="请输入用户名"><br>
+        <label for="password"><input type="password" name="password" id="" autofocus="autofocus" placeholder="请输入密码"></label><br>
+        <button type="submit" formenctype="multipart/form-data">以multipart/form-data类型提交</button><br>
+    </form>
+    <!-- formtarget属性 -->
+    <form action="" method="POST">
+        <label for="username"></label><input type="text" name="" id="username" placeholder="请输入用户名"><br>
+        <label for="password"><input type="password" name="password" id="" autofocus="autofocus" placeholder="请输入密码"></label><br>
+        <button type="submit" >提交</button>
+        <button type="submit" formtarget="_blank">提交到新窗口</button><br>
+    </form>
+    <!-- placeholder属性 -->
+    <form id="login" action="" method="GET">
+        <label for="username"></label><input type="text" name="" id="username" placeholder="请输入用户名"><br>
+        <label for="password"><input type="password" name="password" id="" autofocus="autofocus" placeholder="请输入密码"></label><br>
+        <input type="submit" value="提交" form="login">
+    </form>
+    <!-- autocomplete属性 -->
+    <form action="" method="POST">
+        <input type="text" name="" id="username" placeholder="请输入用户名"><br>
+        <input type="password" name="password" id="" autocomplete="off" placeholder="请输入密码"><br>
+        <input type="submit" value="提交">
+    </form>
+    <!-- autofocus属性 -->
+    <form id="login" action="" method="GET">
+        <label for="username">用户名：</label><input type="text" name="" id="username" placeholder="请输入用户名"><br>
+    </form>
+    <label for="password">密码：<input type="password" name="password" id="" autofocus="autofocus" placeholder="请输入密码"></label><br>
+    <input type="submit" value="提交" form="login"><br>
+    <!-- list属性 -->
+    <form id="login" action="" method="GET">
+        <label for="username"></label><input type="text" name="" id="username" placeholder="请输入用户名"><br>
+    </form>
+    <label for="password"><input type="password" name="password" id="" autofocus="autofocus" placeholder="请输入密码"></label><br>
+    <label for=""><input type="text" name="text" id="" list="location" placeholder="户口所在地"></label><br>
+    <datalist id="location">
+        <option value="Beijing">北京</option>
+        <option value="Beijing">北京</option>
+        <option value="Beijing">北京</option>
+        <option value="Beijing">北京</option>
+        <option value="Beijing">北京</option>
+        <option value="Beijing">北京</option>
+    </datalist>
+    <input type="submit" value="提交" form="login"><br>
+    <!-- pattern属性  规定用于验证输入字段的模式。模式指的是正则表达式。-->
+    <form action="" method="POST">
+        <input type="text" name="" id="username" placeholder="请输入用户名"><br>
+        <input type="password" name="password" id="" autocomplete="off" placeholder="请输入密码"><br>
+        <input type="password" name="password" id="" placeholder="请输入pin码" pattern="[0-9]*"><br>
+        <input type="tel" name="tel" id="" placeholder="请输入手机号" pattern="(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$"><br>
+        <input type="submit" value="提交">
+    </form>
+    <!-- novalidate属性 -->
+    <form action="" method="POST" novalidate="novalidate">
+        <input type="text" name="" id="username" placeholder="请输入用户名"><br>
+        <input type="password" name="password" id="" autocomplete="off" placeholder="请输入密码"><br>
+        E-mail:<input type="email" name="email"><br>
+        <input type="submit" value="提交">
+    </form>
+    <!-- required属性 -->
+    <form action="" method="POST" novalidate="novalidate">
+        <input type="text" name="" id="username" placeholder="请输入用户名" required="required"><br>
+        <input type="password" name="password" id="" autocomplete="off" placeholder="请输入密码" required="required"><br>
+        <input type="submit" value="提交">
+    </form>
+    <!-- textarea新增maxlength属性和wrap属性 -->
+    <form action="" method="GET">
+        <textarea maxlength="100" wrap="hard"></textarea><br> 
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>
+<script>
+    document.designMode="on";
+</script><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

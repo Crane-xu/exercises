@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>异星Giao厂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .mian {
+            height: 200vh;
+            width: 100vw;
+            display: flex;
+            overflow: hidden;
+            justify-content: center;
+            align-items: flex-end;
+            background: url("../img/bg_v4-85.jpg");
+        }
+
+        .bg {
+            height: 50px;
+            width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            border: 5px ridge #7e7474d4;
+            background: url("../img/footer-bg.jpg") center;
+        }
+
+        .rocket {
+            width: 128px;
+            height: 188px;
+            overflow: hidden;
+            position: relative;
+            top: 60px;
+        }
+
+        .idle {
+            width: 78px;
+            margin-left: 25px;
+        }
+
+        .loop {
+            animation: loop 1s steps(24) infinite;
+        }
+
+        @keyframes loop {
+            100% {
+                transform: translate(-3072px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mian">
+        <div class="bg">
+            <div class="rocket">
+                <img class="idle" src="../img/rocket-idle.png">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(function () {
+        const idleUrl = '../img/rocket-idle.png';
+        const loopUrl = '../img/rocket-loop-halfsize.png';
+
+        // preload --image
+        if (document.images) {
+            const img = new Image();
+            img.src = loopUrl;
+        }
+
+        // rocket --hover
+        $(".rocket img").hover(function () {
+            $(".rocket img").attr("src", loopUrl).removeClass("idle").addClass("loop");
+        }, function () {
+            $(".rocket img").attr("src", idleUrl).removeClass("loop").addClass("idle");
+        });
+
+        // rocket --click
+        $(".rocket img").click(function () {
+            $(".rocket img").off().attr("src", loopUrl).removeClass("idle").addClass("loop");
+            $(".rocket").animate({ top: -$('.mian').height() + 'px' }, 2500, "swing");
+            $("html,body").animate({ scrollTop: '0px' }, 2500, "swing");
+        });
+    });
+</script>
+
+</html>

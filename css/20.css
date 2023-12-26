@@ -1,0 +1,164 @@
+/* 浮动方式 */
+.img1 {
+	width: 80px;
+	height: 80px;
+}
+
+.img2 {
+	width: 80px;
+	height: 80px;
+	float: left;
+}
+
+.img3 {
+	width: 80px;
+	height: 80px;
+	float: right;
+}
+
+/* 元素裁剪 */
+.img4 {
+	position: absolute;
+	clip: rect(0px 40px 30px 0px);
+}
+
+/* 元素不够容纳时显示方式 */
+.div1 {
+	border: 1px solid;
+	overflow: scroll;
+}
+
+.div2 {
+	border: 1px solid;
+	width: 300px;
+	height: 50px;
+}
+
+.div3 {
+	border: 1px solid;
+	width: 300px;
+	height: 50px;
+	overflow: auto;
+}
+
+.div4 {
+	border: 1px solid;
+	width: 300px;
+	height: 50px;
+	overflow: hidden;
+}
+
+.p1 {
+	display: none;
+}
+
+.span1 {
+	display: block;
+}
+
+span.inline_box {
+	border: solid 1px red;
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+}
+
+div.inline {
+	display: inline;
+}
+
+li.horizontal {
+	/* float可以使块级元素横排 */
+	float: left;
+	/* 修改li的样式 */
+	list-style-type: none;
+	padding: 5px;
+}
+/* 定位属性 */
+.div5 {
+	width: 100px;
+	height: 100px;
+	border: 3px solid blue;
+}
+
+.div6 {
+	width: 100px;
+	height: 100px;
+	border: 3px solid red;
+	position: absolute;
+	top: 50px;
+	left: 50px;
+}
+
+.div7 {
+	width: 200px;
+	height: 200px;
+	border: 3px solid green;
+	position: absolute;
+	top: 200px;
+	left: 100px;
+}
+
+.div8 {
+	width: 100px;
+	height: 100px;
+	border: 3px solid pink;
+	position: absolute;
+	top: 30px;
+	left: 30px;
+}
+
+.div9 {
+	border: 3px solid red;
+	width: 100px;
+	height: 100px;
+}
+
+.div10 {
+	border: 3px solid blue;
+	width: 100px;
+	height: 100px;
+	position: relative;
+	top: 30px;
+	left: 30px;
+}
+
+.div11 {
+	border: 3px solid red;
+	width: 100px;
+	height: 100px;
+}
+
+.div12 {
+	background-color: yellow;
+	width: 100px;
+	height: 100px;
+}
+
+.div13 {
+	background-color: red;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 50px;
+	left: 50px;
+}
+
+.div14 {
+	background-color: green;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 100px;
+	left: 100px;
+	z-index: 1;
+}
+
+.div15 {
+	background-color: pink;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 150px;
+	left: 150px;
+}

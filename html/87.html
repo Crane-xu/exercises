@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>draw pixmap</title>
+  <link rel="stylesheet" href="../css/drawPixmap.css">
+</head>
+
+<body>
+  <div id="table-container"></div>
+  <div class="operate-group">
+    <h3>操作栏</h3>
+    <input class="input" id="color-picker" type="color" value="#ff0000" />
+    <div class="inline-input">
+      <input type="button" id="revoke" value="撤销🔨" />
+      <input type="button" id="restore" value="恢复🔧" />
+      <input type="button" id="reset-matrix" value="清空重置" />
+    </div>
+    <div class="inline-input">
+      <input class="input-text" type="number" min="0" id="matrix-width" placeholder="宽" />
+      <input class="input-text" type="number" min="0" id="matrix-height" placeholder="高" />
+      <input class="input" id="adjust-matrix" type="button" value="调整画布" />
+    </div>
+    <div class="inline-input">
+      <input class="input" id="grid-color-picker" type="color" value="#e3e3e3" />
+      <input class="input" id="adjust-grid-color" type="button" value="调整颜色" />
+    </div>
+    <br>
+    <hr>
+    <input class="input" id="export-image" type="button" value="下载为图片" />
+  </div>
+</body>
+<script src="../js/html2canvas.min.js"></script>
+<script src="../js/FileSaver.min.js"></script>
+<script src="../js/drawPixmap.js"></script>
+
+</html>

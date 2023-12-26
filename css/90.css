@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+}
+
+li{
+    list-style-type: none;
+}
+
+a{
+    color: #000;
+    text-decoration: none;
+}
+
+canvas{
+    position: absolute;
+    background-color: #f0f0f0;
+    cursor: url("../img/pencil.svg"), auto;
+}
+
+canvas.eraser{
+    cursor: url("../img/eraser.svg"), auto;
+}
+
+.tools{
+    width: 312px;
+    height: 72px;
+    border-radius: 36px;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0 12px 20px -8px rgba(190, 190, 190, 0.2);
+}
+
+.tool-item{
+    width: 64px;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tool-item .color{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--selected-color);
+}
+
+.tool-item.active{
+    /* color: #550af7; */
+    filter: drop-shadow(8px 8px 10px #550af7);
+    font-size: 42px;
+    transform: translateY(-8px);
+}
+
+.panel{
+    height: 64px;
+    padding: 8px 12px;
+    border: 1px solid #eee;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    opacity: 0;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 32px;
+}
+
+.panel li{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--color);
+    cursor: pointer;
+}
+
+.panel li:not(:last-child){
+    margin-right: 8px;
+}
+
+.panel.show{
+    animation: show 0.25s linear both;
+}
+
+.panel.hide{
+    animation: hide 0.25s linear both;
+}
+
+i{
+    width: 32px;
+    height: 32px;
+}
+
+.ri-pencil-fill{
+    background-image: url(../img/pencil.svg);
+}
+
+.ri-eraser-fill{
+    background-image: url(../img/eraser.svg);
+}
+
+.ri-detete-bin-fill{
+    background-image: url(../img/delete.svg);
+}
+
+.ri-download-2-fill{
+    background-image: url(../img/download.svg);
+}
+
+@keyframes show {
+    from{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5;
+        bottom: 10%;
+    }
+    to{
+        opacity: 1;
+        bottom: 20%;
+    }
+}
+
+@keyframes hide {
+    from{
+        opacity: 1;
+        bottom: 20%;
+    }
+    50%{
+        opacity: 0.5;
+        bottom: 10%;
+    }
+    to{
+        opacity: 0;
+        bottom: 10%;
+    }
+}

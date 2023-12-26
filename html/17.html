@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>标签定位</title>
+    <link rel="stylesheet" type="text/css" href="">
+    <style type="text/css">
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        div {
+            height: 200px;
+            width: 200px;
+            border: black solid 1px;
+        }
+        .div1 {
+            position: absolute;
+            top: 100px;
+            left: 300px;
+            /* 最底层 */
+            z-index: 0;
+            text-align: center;
+            background-color: chartreuse;
+        }
+
+        .div2 {
+            position: absolute;
+            top: 250px;
+            left: 150px;
+            /* 底层上一 */
+            z-index: 1;
+            text-align: center;
+            background-color: coral;
+        }
+
+        .div3 {
+            position: absolute;
+            top: 400px;
+            left: 300px;
+            z-index: 0;
+            text-align: center;
+            background-color: hotpink;
+        }
+
+        .div4 {
+            position: absolute;
+            top: 250px;
+            left: 450px;
+            z-index: 1;
+            text-align: center;
+            background-color: lightgray;
+        }
+    </style>
+    <script></script>
+</head>
+
+<body>
+    <div class="div1">
+        <img src="../img/5.png" style="width: 40%;height: 40%;padding-top: 50px;"/>
+    </div>
+    <div class="div2">
+        <img src="../img/6.png" style="width: 40%;height: 40%;padding-top: 50px;"/>
+    </div>
+    <div class="div3">
+        <img src="../img/7.png" style="width: 40%;height: 40%;padding-top: 50px;"/>
+    </div>
+    <div class="div4">
+        <img src="../img/8.png" style="width: 40%;height: 40%;padding-top: 50px;"/>
+    </div>
+</body>
+
+</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 模板</title>
+</head>
+<body>
+    <template id="foo"> 
+        <p>I'm inside a template!</p> 
+    </template>
+    <!-- 
+    在浏览器中渲染时，上面例子中的文本不会被渲染到页面上。因为<template>的内容不属于活动
+    文档，所以 document.querySelector()等 DOM 查询方法不会发现其中的<p>标签。这是因为<p>
+    存在于一个包含在 HTML 模板中的 DocumentFragment 节点内。 -->
+   
+</body>
+<script>
+    // 通过<template>元素的 content 属性可以取得这个 DocumentFragment 的引用：
+    const fragment = document.querySelector('#foo').content; 
+    console.log(document.querySelector('p')); // null 
+    console.log(fragment.querySelector('p')); // <p>...<p>   
+    // DocumentFragment 也是批量向 HTML 中添加元素的高效工具
+    // 为 DocumentFragment 添加子元素不会导致布局重排
+    
+    // 可以使用 importNode()方法克隆 DocumentFragment
+    // const newFragment = document.importNode(barFragment, true);
+
+    //通过 元素.appendChild(template元素) 将 DocumentFragment 的内容实际添加到 DOM 树
+    document.body.appendChild(fragment);
+</script>
+</html>

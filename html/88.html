@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片预览</title>
+    <style>
+        #large-img-box{
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            background-color: #808080;
+        }
+        #large-img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <img id="img" src="../img/41.jpg">
+    <div id="large-img-box">
+        <img id="large-img">
+    </div>
+</body>
+<script>
+    const img = document.querySelector("#img");
+    const largeImg = document.querySelector("#large-img");
+    const largeImgBox = document.querySelector("#large-img-box");
+    img.addEventListener("click",function(){
+        if(largeImgBox.style.display == 'none')
+        largeImgBox.style.display = 'flex';
+        else largeImgBox.style.display = 'flex';
+        largeImg.setAttribute('src',img.getAttribute('src'));
+    },false);
+
+    largeImgBox.addEventListener("click",function(){
+        if(largeImgBox.style.display == 'flex')
+        largeImgBox.style.display = 'none';
+    },false);
+</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>会问检测</title>
+		<script type="text/javascript">
+			var str="level";
+			function check(str){
+				//字符串分割为数组
+				var arr=str.split("");
+				//颠倒数组
+				arr=arr.reverse();
+				//数组转字符串
+				var newStr=arr.join("");
+				if(str==newStr){
+					return true;
+				}else{
+					return false;
+				}
+			}
+			var result=check(str);
+			if(result){
+				document.write(str+":<font color='red'>是回文字符串</font>");
+			}else{
+				document.write(str+":<font color='red'>不是回文字符串</font>");
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
+<script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>
