@@ -17,8 +17,10 @@
             background-color: blueviolet;
         }
     </style>
+        <script src="../js/jquery-3.5.1.js"></script>
+
     <script>
-        window.onload = function () {
+        $(function () {
             /*  
                 像拖放图片或链接一样触发 drop 事件。被放置
                 的文件可以通过事件的 event.dataTransfer.files 属性读到，
@@ -45,7 +47,7 @@
             droptarget.addEventListener("dragenter", handleEvent);
             droptarget.addEventListener("dragover", handleEvent);
             droptarget.addEventListener("drop", handleEvent);
-        }
+        });
     </script>
 </head>
 
@@ -62,5 +64,5 @@
     <div id="droptarget">+</div>
     <div id="output"></div>
 </body>
-
+<script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>
 </html>

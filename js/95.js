@@ -87,4 +87,4 @@ function animate() {
     requestAnimationFrame(animate);
 };
 
-window.onload = animate();
+$(animate());

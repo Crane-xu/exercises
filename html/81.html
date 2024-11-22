@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>影子 DOM </title>
+    <script src="../js/jquery-3.5.1.js"></script>
+
 </head>
 
 <body>
@@ -15,7 +17,7 @@
         在影子 DOM 的内容会实际渲染到页面上，而 HTML 模板的内容不会</div>
 </body>
 <script>
-    window.onload = function(){
+   $(function(){
         // for (let color of ['red', 'green', 'blue']) { 
         // const div = document.createElement('div'); 
         // const shadowDOM = div.attachShadow({ mode: 'open' }); 
@@ -76,6 +78,8 @@
             // Bar 
             // Foo
         */
-    }
+    });
 </script>
+<script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>
+
 </html>
