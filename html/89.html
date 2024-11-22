@@ -8,7 +8,8 @@
     .image {
       width: 30%;
     }
-  </style>
+  </style>    
+<script src="../js/jquery-3.5.1.js"></script>
 </head>
 
 <body>
@@ -30,11 +31,12 @@
       });
   }
   // 页面加载完成 初始化绑定
-  window.onload = function () {
+  $(function () {
     //  图片导出按钮
     const exportImageBtn = document.querySelector("#export-image");
     exportImageBtn.addEventListener("click", exportImage, false);
-  };
+  });
 </script>
+<script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>
 
 </html>

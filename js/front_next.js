@@ -19,13 +19,15 @@ window.onload = function () {
     let btn_front = document.createElement('button');
     let btn_next = document.createElement('button');
 
-    const btnStyle = "width:100px;height:60px;color:#66f;position:fixed;top:10px;right:0;";
-    const btn1Style = "width:100px;height:60px;color:#66f;margin-top:120px;position:fixed;top:10px;right:0;";
-    btn_front.innerText = "front";
-    btn_next.innerText = "next";
+    const defaultStyle = `width:50px;height:50px;color:#fff;position:fixed;bottom:20px;right:2px;
+    font-size: 20px;border: none;background-color: #66f;border-radius: 50%;`;
+    const btnFront = defaultStyle + "margin-bottom:60px;";
+    const btnNext = defaultStyle;
+    btn_front.innerText = "<";
+    btn_next.innerText = ">";
 
-    btn_front.style = btnStyle;
-    btn_next.style = btn1Style;
+    btn_front.style = btnFront;
+    btn_next.style = btnNext;
 
     btn_front.setAttribute("onclick", "changePage(true)");
     btn_next.setAttribute("onclick", "changePage(false)");

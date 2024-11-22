@@ -1,51 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>svg时钟</title>
+    <script src="../js/jquery-3.5.1.js"></script>
+
     <script>
-        function updateTime(){                      //更新svg时钟来显示当前时间
+        function updateTime() {                      //更新svg时钟来显示当前时间
             var now = new Date();                   //当前时间
             var min = now.getMinutes();             //分钟
-            var hour = (now.getHours()%12)+min/60;  //转换成可以在时钟上表示的时间
-            var minangle = min*6;                   //每6°表示一分钟
-            var hourangle = hour*30;                //每30°表示一小时
+            var hour = (now.getHours() % 12) + min / 60;  //转换成可以在时钟上表示的时间
+            var minangle = min * 6;                   //每6°表示一分钟
+            var hourangle = hour * 30;                //每30°表示一小时
 
             // 获取表示时钟时针和分针的SVG元素
             var minhand = document.getElementById("minutehand");
             var hourhand = document.getElementById("hourhand");
 
             // 设置这些元素的SVG属性，将他们移动到钟面上
-            minhand.setAttribute("transform","rotate("+minangle+",50,50)");
-            hourhand.setAttribute("transform","rotate("+hourangle+",50,50)");
+            minhand.setAttribute("transform", "rotate(" + minangle + ",50,50)");
+            hourhand.setAttribute("transform", "rotate(" + hourangle + ",50,50)");
 
             // 每一分钟更新下始终显示时间
-            setTimeout(updateTime,60000);
+            setTimeout(updateTime, 60000);
         }
+        $(function () {
+            updateTime();
+        });
     </script>
     <style>
         /* 下面定义的所有CSS样式都会作用在svg元素上 */
         /* 用于时钟的全局样式 */
-        #clock{
+        #clock {
             /* 黑线 */
-            stroke: black;  
+            stroke: black;
             /* 圆角 */
             stroke-linecap: round;
             /* 以浅蓝灰色为背景 */
             fill: #eef;
         }
+
         /* 时钟的外边框 */
-        #face{ stroke-width: 3px; }
+        #face {
+            stroke-width: 3px;
+        }
+
         /* 标记每个小时的线段 */
-        #ticks{ stroke-width: 2; }
+        #ticks {
+            stroke-width: 2;
+        }
+
         /* 相对较粗的时针 */
-        #hourhand{ stroke-width: 5px; }
+        #hourhand {
+            stroke-width: 5px;
+        }
+
         /* 相对较细的分针 */
-        #minutehand{ stroke-width: 3px; }
+        #minutehand {
+            stroke-width: 3px;
+        }
+
         /* 如何绘制数字 */
-        #numbers{
+        #numbers {
             font: sans-serif 7pt bold;
             /* 该属性用于对齐（开始对齐、中间对齐或结束对齐）相对于给定点的文本字符串 */
             text-anchor: middle;
@@ -54,7 +73,8 @@
         }
     </style>
 </head>
-<body onload="updateTime()">
+
+<body>
     <!-- viewBox是坐标系，width和height是指屏幕大小 -->
     <svg id="clock" viewBox="0 0 100 100" width="500" height="500">
         <defs>
@@ -100,4 +120,5 @@
         </g>
     </svg>
 </body>
+<script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>
 </html>
