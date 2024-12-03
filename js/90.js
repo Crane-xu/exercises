@@ -37,16 +37,24 @@ function drawLine({ startX, startY, endX, endY, color = brushColor }) {
 
 // 监听鼠标事件 画图
 // 1 mousedown 确定起始位置 准备绘制
-canvas.addEventListener("mousedown", function (event) {
-    startPos.x = event.offsetX;
-    startPos.y = event.offsetY;
+const start = (x, y) => {
+    startPos.x = x;
+    startPos.y = y;
     isPainting = true;
+}
+canvas.addEventListener("mousedown", (event) => {
+    start(target.offsetX, target.offsetY);
+});
+canvas.addEventListener("touchstart", (event) => {
+    const target = event.changedTouches[0];
+    start(target.pageX, target.pageY);
 });
 
 // 2 mousemove 鼠标移动，调用drawLine函数
-canvas.addEventListener("mousemove", function (event) {
-    const endX = event.offsetX;
-    const endY = event.offsetY;
+const move = (x, y) => {
+    const endX = x;
+    const endY = y;
+
     if (isPainting && typeof startPos.x === 'number' && typeof startPos.y === 'number') {
         if (isErasering && action === 'eraser') {
             ctx.clearRect(endX - 5, endY - 5, 25, 25);
@@ -62,14 +70,23 @@ canvas.addEventListener("mousemove", function (event) {
             startPos.y = endY;
         }
     }
+}
+canvas.addEventListener("mousemove", (event) => {
+    move(event.offsetX, event.offsetY);
+});
+canvas.addEventListener("touchmove", (event) => {
+    const target = event.changedTouches[0];
+    move(target.pageX, target.pageY);
 });
 
 // 3 mouseup 鼠标抬起，结束绘制
-canvas.addEventListener("mouseup", function (event) {
+const end = () => {
     isPainting = false;
     startPos = { x: undefined, y: undefined };
     enableDownload(canvas);
-});
+}
+canvas.addEventListener("mouseup", end);
+canvas.addEventListener("touchend", end);
 
 // 画笔 橡皮切换
 document.getElementById("pencil").addEventListener('click', function () {
