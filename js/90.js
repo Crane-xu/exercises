@@ -43,7 +43,7 @@ const start = (x, y) => {
     isPainting = true;
 }
 canvas.addEventListener("mousedown", (event) => {
-    start(target.offsetX, target.offsetY);
+    start(event.offsetX, event.offsetY);
 });
 canvas.addEventListener("touchstart", (event) => {
     const target = event.changedTouches[0];
