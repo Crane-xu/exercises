@@ -9,7 +9,6 @@
       width: 30%;
     }
   </style>    
-<script src="../js/jquery-3.5.1.js"></script>
 </head>
 
 <body>
@@ -31,7 +30,7 @@
       });
   }
   // 页面加载完成 初始化绑定
-  $(function () {
+  window.addEventListener("load", () => {
     //  图片导出按钮
     const exportImageBtn = document.querySelector("#export-image");
     exportImageBtn.addEventListener("click", exportImage, false);

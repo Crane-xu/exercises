@@ -14,7 +14,7 @@ function changePage(front) {
     window.location.href = new_url + '.html';
 }
 
-window.onload = function () {
+window.addEventListener("load", () => {
     let body = document.getElementsByTagName('body')[0];
     let btn_front = document.createElement('button');
     let btn_next = document.createElement('button');
@@ -34,4 +34,4 @@ window.onload = function () {
 
     body.appendChild(btn_front);
     body.appendChild(btn_next);
-}
+});

@@ -16,7 +16,7 @@
 
 <body>
     <canvas id="canvas"></canvas>
-    <script src="../js/mazeArray.js"></script>
+    <script src="../js/maze-array.js"></script>
     <script>
         let canvas = document.getElementById("canvas");
         let context = canvas.getContext("2d");
@@ -43,7 +43,7 @@
         }
         renderMaze(context, mazeArray);
     </script>
-    <script src="../js/MazeSolver.v1.js"></script>
+    <script src="../js/maze-solver.v1.js"></script>
     <script>
         let mazeSolver = new MazeSolver(mazeArray);
         let path = mazeSolver.solveMaze();
