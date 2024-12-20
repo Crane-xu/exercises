@@ -6,9 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FileReader</title>
-    <script src="../js/jquery-3.5.1.js"></script>
     <script>
-        $(function () {
+        window.addEventListener("load", () => {
             let filesList = document.getElementById("files-list");
             filesList.addEventListener("change", (event) => {
                 let info = "",
@@ -57,4 +56,5 @@
     <div id="progress"></div>
 </body>
 <script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>
+
 </html>

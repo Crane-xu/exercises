@@ -27,8 +27,11 @@
 </body>
 <script src="../js/103-1.js"></script>
 <script>
-    const t = new Turntable();
-    window.onload = t.init();
+    window.addEventListener("load", () => {
+        const t = new Turntable();
+        t.init();
+    });
 </script>
+<script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>
 
 </html>

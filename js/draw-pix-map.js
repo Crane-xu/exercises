@@ -159,7 +159,7 @@ document.onkeydown = function keyDownHandle(event) {
     }
 };
 // 页面加载完成 初始化绑定
-$(function () {
+window.addEventListener("load", () => {
     //  颜色选择器监听
     const colorPicker = document.querySelector("#color-picker");
     colorPicker.addEventListener("change", watchColorPicker, false);
