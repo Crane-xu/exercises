@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,44 @@
     <link rel="stylesheet" href="../css/33.css">
     <script src="../js/33.js"></script>
 </head>
+
 <body>
     <div class="main">
-            <input disabled="disabled" class="printBox" id="printBox" type="text" value="">
+        <input disabled="disabled" class="print-box" id="print-box" type="text" value="">
+        <div class="row">
+
+            <input class="btn" type="button" value="×" onclick="show('*')">
+            <input class="btn" type="button" value="÷" onclick="show('/')">
+            <input class="btn" type="button" value="←" onclick="backspace()">
+        </div>
+        <div class="row">
+            <input class="btn" type="button" value="+" onclick="show('+')">
+            <input class="btn" type="button" value="-" onclick="show('-')">
+            <input class="btn" type="button" value="AC" onclick="clean()">
+        </div>
+
+        <div class="row">
             <input class="btn" type="button" value="7" onclick="show(7)">
             <input class="btn" type="button" value="8" onclick="show(8)">
             <input class="btn" type="button" value="9" onclick="show(9)">
-            <input class="btn" type="button" value="x" onclick="show('*')">
+        </div>
+        <div class="row">
             <input class="btn" type="button" value="4" onclick="show(4)">
             <input class="btn" type="button" value="5" onclick="show(5)">
             <input class="btn" type="button" value="6" onclick="show(6)">
-            <input class="btn" type="button" value="-" onclick="show('-')">
+        </div>
+        <div class="row">
             <input class="btn" type="button" value="1" onclick="show(1)">
             <input class="btn" type="button" value="2" onclick="show(2)">
             <input class="btn" type="button" value="3" onclick="show(3)">
-            <input class="btn" type="button" value="+" onclick="show('+')">
+        </div>
+        <div class="row">
             <input class="btn" type="button" value="0" onclick="show(0)">
-            <input class="btn" type="button" value="AC" onclick="clean()">
+            <input class="btn" type="button" value="." onclick="show('.')">
             <input class="btn" type="button" value="=" onclick="calc()">
-            <input class="btn" type="button" value="/" onclick="show('/')">
-            <input class="btn_1" type="button" value="." onclick="show('.')">
+        </div>
     </div>
 </body>
-</html><script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>
+
+</html>
+<script src="../js/front_next.js" type="text/javascript" charset="utf-8"></script>

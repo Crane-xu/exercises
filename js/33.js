@@ -1,12 +1,23 @@
-function show(value){
-    var printValue=document.getElementById('printBox');
-    printValue.value=printValue.value+value;
+function $() {
+    return document.getElementById('print-box');
 }
-function calc(){
-    var printValue=document.getElementById('printBox');
-    printValue.value=eval(printValue.value);
+
+function show(value) {
+    const printValue = $();
+    printValue.value = printValue.value + value;
 }
-function clean(){
-    var printValue=document.getElementById('printBox');
-    printValue.value='';
+
+function calc() {
+    const printValue = $();
+    printValue.value = eval(printValue.value);
+}
+
+function clean() {
+    const printValue = $();
+    printValue.value = '';
+}
+
+function backspace() {
+    const printValue = $();
+    printValue.value = printValue.value.slice(0, -1);
 }
