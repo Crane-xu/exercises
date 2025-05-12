@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宫格抽奖</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .lottery-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(80px, 120px));
+            grid-template-rows: repeat(3, minmax(80px, 120px));
+            gap: 15px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .lottery-item {
+            background-color: #007BFF;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .lottery-item:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .lottery-item .desc {
+            font-size: smaller;
+        }
+
+        .highlight {
+            border: 4px solid #FFD700;
+            box-shadow: 0 0 20px #FFD700;
+            animation: pulse 1s infinite;
+        }
+
+        #draw-button {
+            background-color: #FF5722;
+        }
+
+        #draw-button:hover {
+            background-color: #E64A19;
+        }
+
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            animation: slideUp 0.5s ease forwards;
+            margin-bottom: 20px;
+        }
+
+        .receive-link {
+            margin-left: 10px;
+            font-size: initial;
+            font-weight: initial;
+        }
+
+        .loading {
+            display: none;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-top: 8px solid #FF5722;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lottery-container {
+                grid-template-columns: repeat(3, minmax(60px, 100px));
+                grid-template-rows: repeat(3, minmax(60px, 100px));
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .lottery-item {
+                font-size: 14px;
+            }
+
+            .result {
+                font-size: 20px;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+
+        function receiveGoods(event) {
+            const modal = document.querySelector('.modal');
+            modal.style.display = 'flex';
+        }
+
+        function init() {
+            const lotteryContainer = document.querySelector('.lottery-container');
+            const drawButton = document.createElement('div');
+            drawButton.id = 'draw-button';
+            drawButton.textContent = '开始抽奖';
+            drawButton.classList.add('lottery-item');
+            drawButton.style.backgroundColor = '#dc3545';
+            const resultDiv = document.createElement('div');
+            resultDiv.id = 'result';
+            resultDiv.classList.add('result');
+            const loading = document.createElement('div');
+            loading.classList.add('loading');
+            document.body.appendChild(loading);
+            document.body.appendChild(lotteryContainer);
+            document.body.appendChild(resultDiv);
+
+            const modal = document.querySelector('.modal');
+            const closeModal = document.querySelector('.close-modal');
+            const form = document.getElementById('rewardForm');
+
+            let isDrawing = false;
+
+            async function generatePrizes() {
+                loading.style.display = 'block';
+                lotteryContainer.style.display = 'none';
+                lotteryContainer.innerHTML = '';
+                resultDiv.textContent = '';
+
+                const serializedResponse = [
+                    {
+                        "id": 8,
+                        "createdAt": "2025-04-25T14:45:52.998+08:00",
+                        "updatedAt": "2025-04-25T14:45:52.998+08:00",
+                        "deletedAt": {
+                            "Time": "0001-01-01T00:00:00Z",
+                            "Valid": false
+                        },
+                        "level": "未中奖",
+                        "goods": "无",
+                        "remark": ""
+                    },
+                    {
+                        "id": 7,
+                        "createdAt": "2025-04-25T14:45:46.046+08:00",
+                        "updatedAt": "2025-04-25T14:45:46.046+08:00",
+                        "deletedAt": {
+                            "Time": "0001-01-01T00:00:00Z",
+                            "Valid": false
+                        },
+                        "level": "七等奖",
+                        "goods": "打印机",
+                        "remark": ""
+                    },
+                    {
+                        "id": 6,
+                        "createdAt": "2025-04-25T14:45:11.962+08:00",
+                        "updatedAt": "2025-04-25T14:45:11.962+08:00",
+                        "deletedAt": {
+                            "Time": "0001-01-01T00:00:00Z",
+                            "Valid": false
+                        },
+                        "level": "六等奖",
+                        "goods": "饮水机",
+                        "remark": ""
+                    },
+                    {
+                        "id": 5,
+                        "createdAt": "2025-04-25T14:44:58.459+08:00",
+                        "updatedAt": "2025-04-25T14:44:58.459+08:00",
+                        "deletedAt": {
+                            "Time": "0001-01-01T00:00:00Z",
+                            "Valid": false
+                        },
+                        "level": "五等奖",
+                        "goods": "路由器",
+                        "remark": ""
+                    },
+                    {
+                        "id": 4,
+                        "createdAt": "2025-04-25T14:44:43.434+08:00",
+                        "updatedAt": "2025-04-25T14:44:43.434+08:00",
+                        "deletedAt": {
+                            "Time": "0001-01-01T00:00:00Z",
+                            "Valid": false
+                        },
+                        "level": "四等奖",
+                        "goods": "电饭煲",
+                        "remark": ""
+                    },
+                    {
+                        "id": 3,
+                        "createdAt": "2025-04-25T14:44:33.274+08:00",
+                        "updatedAt": "2025-04-25T14:44:33.274+08:00",
+                        "deletedAt": {
+                            "Time": "0001-01-01T00:00:00Z",
+                            "Valid": false
+                        },
+                        "level": "三等奖",
+                        "goods": "笔记本",
+                        "remark": ""
+                    },
+                    {
+                        "id": 2,
+                        "createdAt": "2025-04-25T14:43:53.847+08:00",
+                        "updatedAt": "2025-04-25T14:43:53.847+08:00",
+                        "deletedAt": {
+                            "Time": "0001-01-01T00:00:00Z",
+                            "Valid": false
+                        },
+                        "level": "二等奖",
+                        "goods": "自行车",
+                        "remark": ""
+                    },
+                    {
+                        "id": 1,
+                        "createdAt": "2025-04-25T14:43:22.799+08:00",
+                        "updatedAt": "2025-04-25T14:43:22.799+08:00",
+                        "deletedAt": {
+                            "Time": "0001-01-01T00:00:00Z",
+                            "Valid": false
+                        },
+                        "level": "一等奖",
+                        "goods": "电视机",
+                        "remark": ""
+                    }
+                ];
+
+                const prizes = serializedResponse.map(item => {
+                    return { id: item.id, level: item.level, goods: item.goods }
+                });
+
+                const shuffledPrizes = prizes.sort(() => Math.random() - 0.5);
+                shuffledPrizes.forEach((prize, index) => {
+                    const item = document.createElement('div');
+                    item.classList.add('lottery-item');
+                    item.dataset.prize = prize.level;
+                    item.dataset.id = prize.id;
+
+                    const title = document.createElement('span');
+                    title.textContent = prize.level;
+                    item.appendChild(title);
+
+                    const desc = document.createElement('span');
+                    desc.classList.add('desc');
+                    desc.textContent = prize.goods;
+                    item.appendChild(desc);
+
+                    if (index === 4) {
+                        lotteryContainer.appendChild(drawButton);
+                    }
+                    lotteryContainer.appendChild(item);
+                });
+                if (lotteryContainer.children.length === 8) {
+                    lotteryContainer.appendChild(drawButton);
+                }
+                loading.style.display = 'none';
+                lotteryContainer.style.display = 'grid';
+            }
+
+            drawButton.addEventListener('click', function () {
+                if (isDrawing) return;
+                isDrawing = true;
+                resultDiv.textContent = '';
+
+                const prizeList = [];
+                const items = lotteryContainer.children;
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i] !== drawButton) {
+                        prizeList.push(items[i]);
+                    }
+                }
+
+                const randomIndex = Math.floor(Math.random() * prizeList.length);
+                const winningItem = prizeList[randomIndex];
+                const totalRounds = 3;
+                const totalSteps = totalRounds * prizeList.length + randomIndex;
+                let currentStep = 0;
+
+                function highlightNext() {
+                    if (currentStep > 0) {
+                        const prevIndex = (currentStep - 1) % prizeList.length;
+                        prizeList[prevIndex].classList.remove('highlight');
+                    }
+                    const currentIndex = currentStep % prizeList.length;
+                    prizeList[currentIndex].classList.add('highlight');
+                    currentStep++;
+
+                    if (currentStep <= totalSteps) {
+                        const interval = currentStep <= totalRounds * prizeList.length ? 100 : 200;
+                        setTimeout(highlightNext, interval);
+                    } else {
+                        if (winningItem.dataset.prize === "未中奖") {
+                            resultDiv.textContent = `很遗憾，抽到了：${winningItem.dataset.prize}`;
+                        } else {
+                            form.elements.prizeId.value = winningItem.dataset.id;
+                            resultDiv.textContent = `恭喜你，抽到了：${winningItem.dataset.prize}`;
+
+                            const receive = document.createElement('a');
+                            receive.textContent = '领取奖励';
+                            receive.classList.add('receive-link');
+                            receive.href = 'javascript:void(0);';
+                            receive.addEventListener("click", receiveGoods);
+
+                            resultDiv.appendChild(receive);
+                        }
+                        isDrawing = false;
+                    }
+                }
+
+                highlightNext();
+            });
+
+            generatePrizes();
+
+            closeModal.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            form.addEventListener('submit', (event) => {
+                // 阻止表单的默认提交行为
+                event.preventDefault();
+
+                const form = event.target;
+                const formData = new FormData(form);
+                // 使用 fetch 发送表单数据
+                fetch(form.action, {
+                    method: form.method,
+                    body: formData
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        modal.style.display = 'none';
+                        const [receive] = document.getElementsByClassName('receive-link');
+                        if (receive) {
+                            receive.textContent = '已领取';
+                            receive.removeEventListener('click', receiveGoods);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        }
+
+        window.addEventListener("load", () => {
+            init();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="lottery-container"></div>
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>填写手机号领取奖励</h2>
+            <form id="rewardForm" action="/api/lottery" method="post">
+                <div class="form-group">
+                    <label for="phone">手机号:</label>
+                    <input type="tel" name="phone" required>
+                    <input type="text" name="prizeId" required hidden>
+                </div>
+                <button type="submit" class="submit-btn">提交领取</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
