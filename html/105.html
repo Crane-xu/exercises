@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSAP & Lenis 动画示例</title>
+  <script src="../js/tailwind-3.4.16.js"></script>
+  <link href="../css/font-awesome.min.css" rel="stylesheet">
+  <script src="../js/chart.umd.min.js"></script>
+  
+  <!-- 引入 GSAP 和 Lenis -->
+  <script src="../js/gsap.min.js"></script>
+  <script src="../js/lenis.min.js"></script>   
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#EC4899',
+            dark: '#1E293B',
+            light: '#F8FAFC'
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .parallax {
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+      .parallax-layer {
+        will-change: transform;
+      }
+    }
+  </style>
+  
+  <style>
+    body {
+      overflow-x: hidden;
+      background-color: #F8FAFC;
+    }
+    
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #3B82F6, #EC4899);
+      width: 0%;
+      z-index: 100;
+      transition: width 0.1s ease;
+    }
+    
+    .hero-mask {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%);
+    }
+    
+    .scroll-indicator {
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .stagger-item {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .chart-container {
+      position: relative;
+      height: 300px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="font-inter text-dark">
+  <!-- 进度条 -->
+  <div class="progress-bar"></div>
+
+  <!-- 导航栏 -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-white text-shadow transition-colors duration-300">
+        Scroll<span class="text-secondary">Master</span>
+      </a>
+      
+      <div class="hidden md:flex space-x-8">
+        <a href="#features" class="text-white hover:text-secondary transition-colors duration-300">特性</a>
+        <a href="#demo" class="text-white hover:text-secondary transition-colors duration-300">演示</a>
+        <a href="#stats" class="text-white hover:text-secondary transition-colors duration-300">数据</a>
+        <a href="#contact" class="text-white hover:text-secondary transition-colors duration-300">联系</a>
+      </div>
+      
+      <button class="md:hidden text-white text-2xl">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 英雄区域 -->
+  <section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://picsum.photos/id/1036/1920/1080'); filter: brightness(0.7);"></div>
+      <div class="hero-mask absolute inset-0"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 z-10 text-center">
+      <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-bold text-white mb-6 leading-tight parallax-layer" data-depth="0.2">
+        平滑滚动 <span class="text-secondary">体验</span>
+      </h1>
+      <p class="text-[clamp(1rem,3vw,1.5rem)] text-white/90 mb-10 max-w-3xl mx-auto parallax-layer" data-depth="0.1">
+        使用 GSAP 和 Lenis 创建令人惊叹的滚动动画和视差效果，提升你的网站交互体验
+      </p>
+      <a href="#features" class="inline-block bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 parallax-layer" data-depth="0.05">
+        探索特性
+      </a>
+    </div>
+    
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white scroll-indicator">
+      <i class="fa fa-angle-down text-3xl"></i>
+    </div>
+  </section>
+
+  <!-- 特性区域 -->
+  <section id="features" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-20 fade-in">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">强大特性</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">结合 GSAP 和 Lenis，打造流畅、富有创意的滚动体验</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <!-- 特性卡片 1 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 fade-in">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-bolt text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">平滑滚动</h3>
+          <p class="text-gray-600">自然流畅的滚动体验，带有物理惯性效果，提升用户浏览舒适度。</p>
+        </div>
+        
+        <!-- 特性卡片 2 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 fade-in" style="transition-delay: 0.2s;">
+          <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-eye text-secondary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">视差效果</h3>
+          <p class="text-gray-600">多层次滚动视差，创造深度感和立体感，使页面更具视觉冲击力。</p>
+        </div>
+        
+        <!-- 特性卡片 3 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 fade-in" style="transition-delay: 0.4s;">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-magic text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">滚动触发</h3>
+          <p class="text-gray-600">元素进入视口时自动触发动画，增强页面的交互性和吸引力。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 演示区域 -->
+  <section id="demo" class="py-24 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-20 fade-in">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">动画演示</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">探索各种滚动动画效果</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- 左侧：视差演示 -->
+        <div class="parallax relative h-[500px] fade-in">
+          <div class="absolute inset-0 bg-cover bg-center rounded-xl" style="background-image: url('https://picsum.photos/id/1015/800/600');"></div>
+          <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/30 rounded-full blur-xl parallax-layer" data-depth="-0.1"></div>
+          <div class="absolute bottom-1/4 right-1/4 w-40 h-40 bg-secondary/30 rounded-full blur-xl parallax-layer" data-depth="-0.2"></div>
+          <div class="absolute top-1/3 right-1/3 w-24 h-24 bg-white/50 rounded-full blur-md parallax-layer" data-depth="0.1"></div>
+          <div class="absolute bottom-1/3 left-1/3 w-36 h-36 bg-white/30 rounded-full blur-md parallax-layer" data-depth="0.05"></div>
+          
+          <div class="absolute inset-0 flex items-center justify-center">
+            <h3 class="text-3xl font-bold text-white text-shadow parallax-layer" data-depth="0.3">视差效果</h3>
+          </div>
+        </div>
+        
+        <!-- 右侧：滚动触发动画 -->
+        <div class="space-y-8 fade-in">
+          <div class="stagger-item">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                <i class="fa fa-check text-white"></i>
+              </div>
+              <h4 class="text-xl font-bold">元素进入视口时的淡入效果</h4>
+            </div>
+            <p class="text-gray-600 pl-16">当元素滚动到视口范围内时，自动触发淡入动画，增强用户注意力。</p>
+          </div>
+          
+          <div class="stagger-item">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                <i class="fa fa-check text-white"></i>
+              </div>
+              <h4 class="text-xl font-bold">滚动过程中的持续动画</h4>
+            </div>
+            <p class="text-gray-600 pl-16">元素随着滚动位置不断变化，创造流畅的动态效果，如缩放、旋转等。</p>
+          </div>
+          
+          <div class="stagger-item">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+                <i class="fa fa-check text-white"></i>
+              </div>
+              <h4 class="text-xl font-bold">基于滚动进度的动画控制</h4>
+            </div>
+            <p class="text-gray-600 pl-16">精确控制动画随滚动进度的变化，实现复杂的交互效果。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数据统计区域 -->
+  <section id="stats" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-20 fade-in">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">性能数据</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">平滑滚动对用户体验的影响</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <!-- 左侧：图表 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 fade-in">
+          <h3 class="text-xl font-bold mb-6">用户停留时间对比</h3>
+          <div class="chart-container">
+            <canvas id="statsChart"></canvas>
+          </div>
+        </div>
+        
+        <!-- 右侧：数据卡片 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 fade-in">
+            <div class="text-4xl font-bold text-primary mb-2 counter" data-target="78">0</div>
+            <p class="text-gray-600">页面停留时间增加 (%)</p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 fade-in" style="transition-delay: 0.2s;">
+            <div class="text-4xl font-bold text-secondary mb-2 counter" data-target="65">0</div>
+            <p class="text-gray-600">滚动深度提升 (%)</p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 fade-in" style="transition-delay: 0.4s;">
+            <div class="text-4xl font-bold text-primary mb-2 counter" data-target="42">0</div>
+            <p class="text-gray-600">内容参与度提高 (%)</p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 fade-in" style="transition-delay: 0.6s;">
+            <div class="text-4xl font-bold text-secondary mb-2 counter" data-target="29">0</div>
+            <p class="text-gray-600">跳出率降低 (%)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系区域 -->
+  <section id="contact" class="py-24 bg-dark text-white">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- 左侧：联系信息 -->
+        <div class="fade-in">
+          <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-6">联系我们</h2>
+          <p class="text-gray-300 mb-8">有任何问题或建议？请随时联系我们</p>
+          
+          <div class="space-y-6">
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+                <i class="fa fa-map-marker text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-bold">地址</h4>
+                <p class="text-gray-300">北京市朝阳区科技园 A 座 1001 室</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+                <i class="fa fa-envelope text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-bold">邮箱</h4>
+                <p class="text-gray-300">contact@scrollmaster.com</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+                <i class="fa fa-phone text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-bold">电话</h4>
+                <p class="text-gray-300">+86 10 8888 7777</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-10 flex space-x-4">
+            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- 右侧：联系表单 -->
+        <div class="bg-white/5 rounded-xl p-8 fade-in">
+          <h3 class="text-2xl font-bold mb-6">发送消息</h3>
+          <form>
+            <div class="mb-6">
+              <label for="name" class="block text-sm font-medium text-gray-300 mb-2">姓名</label>
+              <input type="text" id="name" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white" placeholder="请输入您的姓名">
+            </div>
+            
+            <div class="mb-6">
+              <label for="email" class="block text-sm font-medium text-gray-300 mb-2">邮箱</label>
+              <input type="email" id="email" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white" placeholder="请输入您的邮箱">
+            </div>
+            
+            <div class="mb-6">
+              <label for="message" class="block text-sm font-medium text-gray-300 mb-2">消息</label>
+              <textarea id="message" rows="4" class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white" placeholder="请输入您的消息"></textarea>
+            </div>
+            
+            <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02]">
+              发送消息
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="py-12 bg-dark border-t border-white/10 text-white/70">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 ScrollMaster. 保留所有权利。</p>
+    </div>
+  </footer>
+
+  <script>
+    // 初始化 Lenis 平滑滚动
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      smooth: true,
+      smoothTouch: false,
+      touchMultiplier: 2
+    });
+
+    // 更新滚动位置
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // 导航栏滚动效果
+    const navbar = document.getElementById('navbar');
+    lenis.on('scroll', ({ scroll }) => {
+      if (scroll > 100) {
+        navbar.classList.add('bg-dark/90', 'backdrop-blur-md', 'shadow-lg');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-dark/90', 'backdrop-blur-md', 'shadow-lg');
+        navbar.classList.add('bg-transparent');
+      }
+      
+      // 更新进度条
+      const progressBar = document.querySelector('.progress-bar');
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (scroll / height) * 100;
+      progressBar.style.width = scrolled + '%';
+    });
+
+    // 视差效果
+    lenis.on('scroll', ({ scroll }) => {
+      const parallaxElements = document.querySelectorAll('.parallax-layer');
+      parallaxElements.forEach(element => {
+        const depth = element.getAttribute('data-depth');
+        const movement = -(scroll * depth);
+        element.style.transform = `translate3d(0, ${movement}px, 0)`;
+      });
+    });
+
+    // 滚动触发动画
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(element => {
+      observer.observe(element);
+    });
+
+    // 交错动画
+    const staggerItems = document.querySelectorAll('.stagger-item');
+    const staggerObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            gsap.to(entry.target, {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: 'power2.out'
+            });
+          }, index * 150);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    staggerItems.forEach(item => {
+      staggerObserver.observe(item);
+    });
+
+    // 数字计数动画
+    const counters = document.querySelectorAll('.counter');
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = parseInt(counter.getAttribute('data-target'));
+          let count = 0;
+          const updateCount = () => {
+            const increment = target / 60; // 60帧动画
+            if (count < target) {
+              count += increment;
+              counter.innerText = Math.ceil(count);
+              setTimeout(updateCount, 16);
+            } else {
+              counter.innerText = target;
+            }
+          };
+          updateCount();
+          observer.unobserve(counter);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => {
+      counterObserver.observe(counter);
+    });
+
+    // 初始化图表
+    const ctx = document.getElementById('statsChart').getContext('2d');
+    const statsChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['传统滚动', '平滑滚动'],
+        datasets: [{
+          label: '平均页面停留时间 (秒)',
+          data: [45, 78],
+          backgroundColor: [
+            'rgba(59, 130, 246, 0.5)',
+            'rgba(236, 72, 153, 0.5)'
+          ],
+          borderColor: [
+            'rgba(59, 130, 246, 1)',
+            'rgba(236, 72, 153, 1)'
+          ],
+          borderWidth: 1
+        }, {
+          label: '页面滚动深度 (%)',
+          data: [52, 85],
+          backgroundColor: [
+            'rgba(59, 130, 246, 0.3)',
+            'rgba(236, 72, 153, 0.3)'
+          ],
+          borderColor: [
+            'rgba(59, 130, 246, 0.7)',
+            'rgba(236, 72, 153, 0.7)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // 平滑滚动到锚点
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          lenis.scrollTo(targetElement);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
